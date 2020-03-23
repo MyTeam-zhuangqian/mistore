@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="cn">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>小米商城</title>
+		<link rel="stylesheet" type="text/css" href="/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="/css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	</head>
+
+	<body>
+		<div class="top-navbar">
+			<ul class="nav">
+				<a href="">小米商城 <span>|</span> </a>
+				<a href="">MIUI <span>|</span> </a>
+				<a href="">IoT <span>|</span> </a>
+				<a href="">云服务 <span>|</span> </a>
+				<a href=""> 金融 <span>|</span> </a>
+				<a href=""> 有品 <span>|</span> </a>
+				<a href="">小爱开放平台 <span>|</span> </a>
+				<a href="">企业团购 <span>|</span> </a>
+				<a href="">资质证照 <span>|</span> </a>
+				<a href="">协议规则 <span>|</span> </a>
+				<a href="">下载app 小米商城 小米商城APP <span>|</span> </a>
+				<a href="">Select Location</a>
+			</ul>
+			<div class="cart">
+				<a href=""  id="cart"><span class="iconfont" >&#xe615;</span>  购物车（0）</a>
+				<a href="/login" th:href="@{/login}">登录 | </a>
+				<a href="">注册 | </a>
+				<a href="">消息通知</a>
+			</div>
+		</div>
+	
+		<div class="page-nav">
+			<div class="pic">
+				<a href="">
+					<img src="img/mi.png"/>
+				</a>
+			</div>
+			<ul class="nav-ul">
+				<li class="nav-item"><a >小米手机</a>
+					<div class="pop" id="pop">
+						<ul class="down-ul">
+							<li ><a ><img src="img/phone.png"/></a><h4>小米手机</h4><span>2999元</span></li>
+							<li><a href=""><img src="img/ph1.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/ph2.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/ph3.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/ph4.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/ph5.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item"><a href="">Redmi红米</a>
+					<div class="pop" >
+						<ul class="down-ul">
+							<li ><a ><img src="img/phone.png"/></a><h4>小米手机</h4><span>2999元</span></li>
+							<li><a href=""><img src="img/ph1.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/ph2.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/ph3.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/ph4.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/ph5.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item"><a href="">电视</a>
+					<div class="pop" >
+						<ul class="down-ul">
+							<li ><a ><img src="img/tv6.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span></li>
+							<li><a href=""><img src="img/tv4.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/tv1.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/tv2.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/tv3.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/tv5.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item"><a href="">笔记本</a>
+					<div class="pop" >
+						<ul class="down-ul">
+							<li ><a ><img src="img/co1.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span></li>
+							<li><a href=""><img src="img/co2.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/co3.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/co4.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/co5.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/co6.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item"><a href="">家电</a>
+					<div class="pop" >
+						<ul class="down-ul">
+							<li ><a ><img src="img/b1.png"/></a><h4>小米手机</h4><span>2999元</span></li>
+							<li><a href=""><img src="img/b2.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/b3.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/b5.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/b4.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/b6.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item"><a href="">路由器</a>
+					<div class="pop" >
+						<ul class="down-ul">
+							<li ><a ><img src="img/a1.png"/></a><h4>小米手机</h4><span>2999元</span></li>
+							<li><a href=""><img src="img/a2.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/a3.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/a3.png"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							
+							<li><a href=""><img src="img/a5.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/a6.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item"><a href="">智能硬件</a>
+					<div class="pop" >
+						<ul class="down-ul">
+							<li ><a ><img src="img/c5.png"/></a><h4>小米手机</h4><span>2999元</span></li>
+							<li><a href=""><img src="img/c1.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/c2.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/c3.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/c4.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+							<li><a href=""><img src="img/c6.jpg.jfif"/></a><h4>小米手机</h4><span>2999元</span><i></i></li>
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item"><a href="">社区</a></li>
+			</ul>
+			<input type="" name="" id="" value=""  class="search-input"/><button class="iconfont" id="search-button">&#xe600;</button>
+			<div class="nav-left">
+				<ul class="nav-left-ul">
+					<li><a href="">手机 电话卡</a> <span class="iconfont">&#xe6cf;</span></li>
+					<li><a href="">电视 盒子</a> <span class="iconfont">&#xe6cf;</span></li>
+					<li><a href="">笔记本 显示器 平板</a> <span class="iconfont">&#xe6cf;</span></li>
+					<li><a href="">家电 插线板</a> <span class="iconfont">&#xe6cf;</span></li>
+					<li><a href="">出行 穿戴</a> <span class="iconfont">&#xe6cf;</span></li>
+					<li><a href="">智能 路由器</a> <span class="iconfont">&#xe6cf;</span></li>
+					<li><a href="">电源 配件</a> <span class="iconfont">&#xe6cf;</span></li>
+					<li><a href="">健康 儿童</a> <span class="iconfont">&#xe6cf;</span></li>
+					<li><a href="">耳机 音箱</a> <span class="iconfont">&#xe6cf;</span></li>
+					<li><a href="">生活 箱包</a> <span class="iconfont">&#xe6cf;</span></li>
+				</ul>
+			</div>
+			<div class="poster">
+				<img src="img/poster1.jpg.jfif" id="poster"/>
+			</div>
+		
+		</div>
+			<div class="poster-bottom">
+				<div class="icon-left">
+					<ul class="icon-left-ul">
+						<li>
+							<a href="" class="iconfont">&#xe60d;</a>
+						</li>
+						<li><a href="" class="iconfont">&#xe6bc;</a></li>
+						<li><a href="" class="iconfont">&#xe60d;</a></li>
+						<li><a href="" class="iconfont">&#xe66b;</a></li>
+						<li><a href="" class="iconfont">&#xe606;</a></li>
+						<li><a href="" class="iconfont">&#xe601;</a></li>
+					</ul>
+				</div>
+			<div class="bottom-pic">
+				<img src="img/d1.jpg.jfif"/>
+				<img src="img/d2.jpg.jfif"/>
+				<img src="img/d3.jpg.jfif"/>
+			</div>
+			</div>
+		<div class="flash">
+			<div class="ad1">
+				<a href=""><img src="img/ad1.jpg.jfif"/></a>
+				
+			</div>
+			<h3 class="tit1">手机</h3>
+				<div class="flash1">
+					<div class="flash1-lt">
+						<img src="img/e1.jpg.jfif"/>
+					</div>
+					<div class="flash1-rt">
+						<ul class="flash1-rt-ul">
+							<li class="flash1-rt-li"><a href=""><img src="img/e2.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash1-rt-li"><a href=""><img src="img/e3.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash1-rt-li"><a href=""><img src="img/e4.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash1-rt-li"><a href=""><img src="img/e5.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash1-rt-li"><a href=""><img src="img/e6.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash1-rt-li"><a href=""><img src="img/e7.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash1-rt-li"><a href=""><img src="img/e8.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash1-rt-li"><a href=""><img src="img/e9.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="ad2">
+					<a><img src="img/f1.jpg.jfif"/></a>
+				</div>
+				<h3 class="tit2">家电</h3>
+				<div class="flash2">
+					
+					<div class="flash2-rt">
+						<ul class="flash2-rt-ul">
+							<li class="flash2-rt-li"><a href="" id="tag2"><img src="img/f2.jpg.jfif" /></a></li>
+							
+							<li class="flash2-rt-li"><a href=""><img src="img/f11.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash2-rt-li"><a href=""><img src="img/f4.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash2-rt-li"><a href=""><img src="img/f5.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							
+							<li class="flash2-rt-li"><a href=""><img src="img/f6.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash2-rt-li"><a href="" id="tag2"><img src="img/f3.jpg.jfif" /></a></li>
+							<li class="flash2-rt-li"><a href=""><img src="img/f7.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash2-rt-li"><a href=""><img src="img/f8.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash2-rt-li"><a href=""><img src="img/f9.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash2-rt-li"><a href=""><img src="img/f10.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="ad3">
+					<a><img src="img/g3.jpg.jfif"/></a>
+				</div>
+				<h3 class="tit3">智能</h3>
+				<div class="flash3">
+					
+					<div class="flash3-rt">
+						<ul class="flash3-rt-ul">
+							<li class="flash3-rt-li"><a href="" id="tag3"><img src="img/g4.jpg.jfif" /></a></li>
+							
+							<li class="flash3-rt-li"><a href=""><img src="img/g5.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash3-rt-li"><a href=""><img src="img/g6.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash3-rt-li"><a href=""><img src="img/g7.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							
+							<li class="flash3-rt-li"><a href=""><img src="img/g8.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash3-rt-li"><a href="" id="tag3"><img src="img/g9.jpg.jfif" /></a></li>
+							<li class="flash3-rt-li"><a href=""><img src="img/g10.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash3-rt-li"><a href=""><img src="img/g11.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash3-rt-li"><a href=""><img src="img/g12.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+							<li class="flash3-rt-li"><a href=""><img src="img/g13.jpg.jfif"/><h3>小米手机10</h3><p class="dec">骁龙865\1亿像素相机</p><p class="price">3999元起</p></a></li>
+						</ul>
+					</div>
+				</div>
+		</div>
+		
+		
+		
+<script type="text/javascript">
+			var poster =document.getElementById("poster");
+			var num = 1;
+			setInterval (function(){
+				num++
+				if (num==6){
+					num=1;
+				}
+				poster.src="img/poster" + num +".jpg.jfif";
+				console.log(num)
+			},3000)
+			
+		</script>
+		</body>
+
+</html>
