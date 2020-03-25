@@ -24,6 +24,10 @@ public class LoginController {
     String index(){
         return "index";
     }
+    @RequestMapping("/Goods")
+    String Goods(){return "Goods";}
+    @RequestMapping("/sell")
+    String sell(){ return "sell";}
 
     @RequestMapping("/login_go")
     @ResponseBody
