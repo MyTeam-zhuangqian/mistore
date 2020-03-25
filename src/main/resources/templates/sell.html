@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>淘米当</title>
+		<link rel="stylesheet" type="text/css" href="css/demo.css"/>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="css/sell.css"/>
+	</head>
+	<body>
+		<div class="top-navbar">
+			<ul class="nav">
+				<a href="index.html">首页 <span>|</span> </a>
+				<a href="">发布闲置 <span>|</span> </a>
+				<a href="">个人中心 <span>|</span> </a>
+				
+			</ul>
+			<div class="cart">
+				<a href=""  id="cart"><span class="iconfont" >&#xe615;</span>  购物车（0）</a>
+				<a href=""> | 订单管理 </a>
+				
+			</div>
+		</div>
+		<div class="head-bg-box">
+			<img class="head-bg" src="img/test2.jfif"/>
+		</div>
+		<div class="container">
+			<div class="sell-right">
+				<img class="poster" src="img/test3.jpg.jfif"/>
+			</div>
+			<div class="sell-left">
+				<div class="sell-left-head">
+					添加商品
+				</div>
+				<form action="" method="post">
+					<label for="file" class="sell-pic">
+						
+						<span>点击添加书籍照片</span>
+						<input class="sell-ipt" type="button" name="" id="" value="" /><input   type="file" multiple="" onchange="Read(this)" id="file" />
+						<img id="selectImg" src="img/test.jpg"/>
+					
+					</label><br>
+					<span class="p-des">请输入描述：</span><input class="sell-description" type="text" name="" id="" value="" /><br>
+					<span class="p-ath">请输入作者：</span><input class="sell-author" type="text" name="" id="" value="" /><br>
+					<input class="sell-submit" type="submit" value="提交"/><br>
+					
+				</form>
+			</div>
+			
+		</div>
+		<script type="text/javascript">
+	  function Read(obj) {
+        var file = obj.files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {    
+            var img = document.getElementById("selectImg");
+            img.src = e.target.result;   
+
+            
+        };
+    }
+
+		</script>
+	</body>
+</html>
