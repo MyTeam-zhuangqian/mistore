@@ -1,26 +1,33 @@
 package com.example.mistroe.pojo;
 
-/**
- * @author zlin
- * @date 2020/3/23 14:57
- */
-public class User {
-    private Integer id;
+import java.io.Serializable;
+import java.util.Date;
+
+public class User implements Serializable {
+    private String idUser;
+
     private String name;
+
     private String pwd;
 
-    public User(Integer id, String name, String pwd) {
-        this.id = id;
-        this.name = name;
-        this.pwd = pwd;
+    private String nickname;
+
+    private Date birthday;
+
+    private Integer sex;
+
+    private String headPortrait;
+
+    private String usualAddress;
+
+    private static final long serialVersionUID = 1L;
+
+    public String getIdUser() {
+        return idUser;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdUser(String idUser) {
+        this.idUser = idUser == null ? null : idUser.trim();
     }
 
     public String getName() {
@@ -28,7 +35,7 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     public String getPwd() {
@@ -36,15 +43,46 @@ public class User {
     }
 
     public void setPwd(String pwd) {
-        this.pwd = pwd;
+        this.pwd = pwd == null ? null : pwd.trim();
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", pwd='" + pwd + '\'' +
-                '}';
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public String getHeadPortrait() {
+        return headPortrait;
+    }
+
+    public void setHeadPortrait(String headPortrait) {
+        this.headPortrait = headPortrait == null ? null : headPortrait.trim();
+    }
+
+    public String getUsualAddress() {
+        return usualAddress;
+    }
+
+    public void setUsualAddress(String usualAddress) {
+        this.usualAddress = usualAddress == null ? null : usualAddress.trim();
     }
 }

@@ -1,6 +1,6 @@
 
 $.ajax({
-    url:'/test',
+    url:'/good/test',
     type:'POST',
     dataType:'json',
     data:'',

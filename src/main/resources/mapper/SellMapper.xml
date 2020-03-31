@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mistroe.mapper.SellMapper">
+  <resultMap id="BaseResultMap" type="com.example.mistroe.pojo.Sell">
+    <id column="id_sell" jdbcType="VARCHAR" property="idSell" />
+    <result column="is_sell" jdbcType="INTEGER" property="isSell" />
+    <result column="good_id" jdbcType="VARCHAR" property="goodId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sell
+    where id_sell = #{idSell,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.mistroe.pojo.Sell">
+    insert into sell (id_sell, is_sell, good_id
+      )
+    values (#{idSell,jdbcType=VARCHAR}, #{isSell,jdbcType=INTEGER}, #{goodId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.mistroe.pojo.Sell">
+    update sell
+    set is_sell = #{isSell,jdbcType=INTEGER},
+      good_id = #{goodId,jdbcType=VARCHAR}
+    where id_sell = #{idSell,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id_sell, is_sell, good_id
+    from sell
+    where id_sell = #{idSell,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id_sell, is_sell, good_id
+    from sell
+  </select>
+
+
+</mapper>

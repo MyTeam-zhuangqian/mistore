@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mistroe.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.example.mistroe.pojo.User">
+    <id column="id_user" jdbcType="VARCHAR" property="idUser" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="head_portrait" jdbcType="VARCHAR" property="headPortrait" />
+    <result column="usual_address" jdbcType="VARCHAR" property="usualAddress" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where id_user = #{idUser,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.mistroe.pojo.User">
+    insert into user (id_user, name, pwd, 
+      nickname, birthday, sex, 
+      head_portrait, usual_address)
+    values (#{idUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{sex,jdbcType=INTEGER}, 
+      #{headPortrait,jdbcType=VARCHAR}, #{usualAddress,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.mistroe.pojo.User">
+    update user
+    set name = #{name,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      sex = #{sex,jdbcType=INTEGER},
+      head_portrait = #{headPortrait,jdbcType=VARCHAR},
+      usual_address = #{usualAddress,jdbcType=VARCHAR}
+    where id_user = #{idUser,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id_user, name, pwd, nickname, birthday, sex, head_portrait, usual_address
+    from user
+    where id_user = #{idUser,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id_user, name, pwd, nickname, birthday, sex, head_portrait, usual_address
+    from user
+  </select>
+
+</mapper>

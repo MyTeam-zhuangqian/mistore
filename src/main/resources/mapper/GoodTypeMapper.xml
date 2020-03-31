@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mistroe.mapper.GoodTypeMapper">
+  <resultMap id="BaseResultMap" type="com.example.mistroe.pojo.GoodType">
+    <id column="id_type" jdbcType="VARCHAR" property="idType" />
+    <result column="good_type" jdbcType="VARCHAR" property="goodType" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from good_type
+    where id_type = #{idType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.mistroe.pojo.GoodType">
+    insert into good_type (id_type, good_type)
+    values (#{idType,jdbcType=VARCHAR}, #{goodType,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.mistroe.pojo.GoodType">
+    update good_type
+    set good_type = #{goodType,jdbcType=VARCHAR}
+    where id_type = #{idType,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id_type, good_type
+    from good_type
+    where id_type = #{idType,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id_type, good_type
+    from good_type
+  </select>
+</mapper>
