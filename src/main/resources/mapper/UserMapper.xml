@@ -11,6 +11,9 @@
     <result column="head_portrait" jdbcType="VARCHAR" property="headPortrait" />
     <result column="usual_address" jdbcType="VARCHAR" property="usualAddress" />
   </resultMap>
+  <sql id="userSql">
+    id_user, name, pwd, nickname, birthday, sex, head_portrait, usual_address
+  </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from user
     where id_user = #{idUser,jdbcType=VARCHAR}
@@ -43,5 +46,10 @@
     select id_user, name, pwd, nickname, birthday, sex, head_portrait, usual_address
     from user
   </select>
-
+  <select id="selectByKey" resultMap="BaseResultMap">
+    select * from user where ${key}=#{value}
+  </select>
+  <select id="selectUserByName" resultMap="BaseResultMap">
+    select <include refid="userSql"></include> from user where name = #{name}
+  </select>
 </mapper>

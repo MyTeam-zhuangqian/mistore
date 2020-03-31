@@ -1,7 +1,9 @@
 package com.example.mistroe.mapper;
 
 import com.example.mistroe.pojo.Buy;
+import com.example.mistroe.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 @Mapper
@@ -15,4 +17,6 @@ public interface BuyMapper {
     List<Buy> selectAll();
 
     int updateByPrimaryKey(Buy record);
+
+
 }

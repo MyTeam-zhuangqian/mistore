@@ -11,4 +11,6 @@ import com.example.mistroe.pojo.User;
 public interface UserFunction {
 
     User loginGO(String name, String pwd);
+
+
 }

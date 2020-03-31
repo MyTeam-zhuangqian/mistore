@@ -18,7 +18,16 @@ public class UserFunctionImpl implements UserFunction {
 
     @Override
     public User loginGO(String name, String pwd) {
-        User user = userMapper.loginGO(name,pwd);
+        User user = null;
+        user = userMapper.selectUserByName(name);
+        if (user != null){
+            if (pwd.equals(user.getPwd())){
+                user.setPwd("");
+                return user;
+            }
+        }
         return user;
     }
+
+
 }
