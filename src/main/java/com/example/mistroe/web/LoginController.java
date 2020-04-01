@@ -45,6 +45,12 @@ public class LoginController {
         return "sell";
     }
 
+    @RequestMapping("/Cart")
+    String Cart(){ return "Cart"; }
+
+    @RequestMapping("/Goodsinfo")
+    String GoodsInfo(){ return "Goodsinfo"; }
+
     @RequestMapping("/login_go")
     @ResponseBody
     User loginGo(@RequestParam("name") String name, @RequestParam("pwd") String pwd, HttpServletRequest request) {
