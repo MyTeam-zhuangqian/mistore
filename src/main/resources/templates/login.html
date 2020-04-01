@@ -15,7 +15,7 @@
 					<h4>密码登录</h4>
 					<input class="login-user" type="username" name="name"  /><br>
 					<input class="login-pwd" type="password" name="pwd"  /><br>
-					<input class="login-lg" type="submit" value="登录" id="login"/>
+					<input class="login-lg" type="button" value="登录" id="login"/>
 					<button class="register"><a href="">注册</a></button>
 				</form>
 				<button class="register" hidden="hidden"><a href="/index" ><span id="index">首页</span></a></button>
@@ -26,14 +26,13 @@
 	<script type="text/javascript">
 		$("#login").click(function () {
 			$.ajax({
-				url:'login_go',
+				url:'/login_go',
 				type:'POST',
 				dataType:'json',
 				data:$("#form").serialize(),
 				success:function (res) {
 					alert('欢迎'+res.nickname);
-					$("#index").click();
-
+					$(location).attr('href', '/index');
 				},
 				error:function () {
 					alert("用户名密码错误！");

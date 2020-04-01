@@ -47,12 +47,12 @@ public class LoginController {
 
     @RequestMapping("/login_go")
     @ResponseBody
-    User loginGo(@RequestParam("name") String name, @RequestParam("pwd") String pwd, HttpServletRequest request) {
-
+    User loginGo(String name, String pwd, HttpServletRequest request) {
+        User user = null;
         //执行登陆方法
         try {
             //登陆成功
-            User user = userFunction.loginGO(name, pwd);
+            user = userFunction.loginGO(name, pwd);
             request.getSession().setAttribute("user",user);
             return user;
         }catch (Exception e){

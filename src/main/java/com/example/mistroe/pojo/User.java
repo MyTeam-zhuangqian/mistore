@@ -85,4 +85,18 @@ public class User implements Serializable {
     public void setUsualAddress(String usualAddress) {
         this.usualAddress = usualAddress == null ? null : usualAddress.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser='" + idUser + '\'' +
+                ", name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", birthday=" + birthday +
+                ", sex=" + sex +
+                ", headPortrait='" + headPortrait + '\'' +
+                ", usualAddress='" + usualAddress + '\'' +
+                '}';
+    }
 }
