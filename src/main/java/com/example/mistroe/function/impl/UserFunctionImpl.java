@@ -26,7 +26,7 @@ public class UserFunctionImpl implements UserFunction {
                 return user;
             }
         }
-        return user;
+        return null;
     }
 
 

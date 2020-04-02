@@ -5,20 +5,21 @@ import com.example.mistroe.pojo.Good;
 import com.example.mistroe.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author zlin
  * @date 2020/3/23 13:46
  */
+/*
+@CrossOrigin 跨域请求注解
+*/
 @Controller
 @RequestMapping("/")
 public class LoginController {
@@ -63,7 +64,7 @@ public class LoginController {
             return user;
         }catch (Exception e){
             //登陆失败
-            return null;
+            return user;
         }
     }
 
