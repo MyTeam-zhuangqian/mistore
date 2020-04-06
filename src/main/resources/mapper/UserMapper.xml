@@ -6,50 +6,43 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="pwd" jdbcType="VARCHAR" property="pwd" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
-    <result column="birthday" jdbcType="DATE" property="birthday" />
     <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="head_portrait" jdbcType="VARCHAR" property="headPortrait" />
-    <result column="usual_address" jdbcType="VARCHAR" property="usualAddress" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
   </resultMap>
-  <sql id="userSql">
-    id_user, name, pwd, nickname, birthday, sex, head_portrait, usual_address
-  </sql>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from user
     where id_user = #{idUser,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.example.mistroe.pojo.User">
     insert into user (id_user, name, pwd, 
-      nickname, birthday, sex, 
-      head_portrait, usual_address)
+      nickname, sex, head_portrait, 
+      email)
     values (#{idUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
-      #{nickname,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{sex,jdbcType=INTEGER}, 
-      #{headPortrait,jdbcType=VARCHAR}, #{usualAddress,jdbcType=VARCHAR})
+      #{nickname,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{headPortrait,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.example.mistroe.pojo.User">
     update user
     set name = #{name,jdbcType=VARCHAR},
       pwd = #{pwd,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=DATE},
       sex = #{sex,jdbcType=INTEGER},
       head_portrait = #{headPortrait,jdbcType=VARCHAR},
-      usual_address = #{usualAddress,jdbcType=VARCHAR}
+      email = #{email,jdbcType=VARCHAR}
     where id_user = #{idUser,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id_user, name, pwd, nickname, birthday, sex, head_portrait, usual_address
+    select id_user, name, pwd, nickname, sex, head_portrait, email
     from user
     where id_user = #{idUser,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id_user, name, pwd, nickname, birthday, sex, head_portrait, usual_address
+    select id_user, name, pwd, nickname, sex, head_portrait, email
     from user
   </select>
-  <select id="selectByKey" resultMap="BaseResultMap">
-    select * from user where ${key}=#{value}
-  </select>
-  <select id="selectUserByName" resultMap="BaseResultMap">
-    select <include refid="userSql"></include> from user where name = #{name}
+
+  <select id="selectUserByName" parameterType="java.lang.String" resultType="com.example.mistroe.pojo.User">
+    select * from user where name =#{name ,jdbcType=VARCHAR}
   </select>
 </mapper>

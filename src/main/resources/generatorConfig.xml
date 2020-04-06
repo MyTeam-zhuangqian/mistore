@@ -12,8 +12,8 @@
     <context id="Mysql" targetRuntime="MyBatis3simple">
         <!--<context id="Mysql" targetRuntime="MyBatis3">-->
         <!--产生序列化  hashcode    toString 方法-->
-        <!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>-->
-        <!--<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>-->
+<!--        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>-->
+<!--        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
@@ -58,20 +58,20 @@
             是否生成 example类 -->
 
 
-<!--
 
-        <table tableName="good" domainObjectName="Good"
+
+        <table tableName="address" domainObjectName="Address"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
--->
 
-        <table tableName="表名" domainObjectName="实体类名"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+
+<!--        <table tableName="表名" domainObjectName="实体类名"-->
+<!--               enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false">-->
+<!--        </table>-->
 
     </context>
 </generatorConfiguration>

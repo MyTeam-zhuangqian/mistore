@@ -6,13 +6,14 @@
 		<link rel="stylesheet" type="text/css" href="css/demo.css"/>
 		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="css/profile.css"/>
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 	</head>
 	<body>
 		<div class="top-navbar">
 			<ul class="nav">
 				<a href="index">首页 <span>|</span> </a>
 				<a href="sell">发布闲置 <span>|</span> </a>
-				<a href="profile">个人中心 <span>|</span> </a>
+				<a href="profile"><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span><span>|</span></a>
 				
 			</ul>
 			<div class="cart">
@@ -41,15 +42,16 @@
 									当前头像:<br>
 									<label for="file">
 										<input class="file" type="file" multiple=""  id="file" onchange="Read(this)"  /><br>
-									<img id="selectImg" src="img/logo.png"/>
+									<img id="selectImg" src="${session.user.headPortrait}"/>
 										<span class="head-btn">更换头像</span>
 									</label>
 								</div>
-								用户名：<input class="user" type="text" name="" id="" value="" /><br>
-								邮箱：<input class="email" type="email"><br>
-								性别：<input class="sex" type="radio" name="sex" id="sex" value="" checked="" />
+								用户名：<input class="user" type="text" name="" id=" " th:value="${session.user.nickname}" /><br>
+								邮箱：<input class="email" type="email" th:value="${session.user.email}"><br>
+								性别：<input class="sex" type="radio" name="sex" id="sex" value="" />
+								<input id="zql" type="hidden" th:value="${session.user.sex}">
 								<label for="sex">
-								 男<input class="sex1" type="radio" name="sex" id="sex" value="" /> 女<br>
+								 男<input class="sex1" type="radio" name="sex" id="sex1" value="" checked="" /> 女<br>
 								 </label>
 								<input class="sub" type="submit" value="修改"/>
 							</form>
@@ -59,19 +61,10 @@
 							<div class="nav-right-head">
 								<span class="title">地址管理</span>
 							</div>
-							<table border="" cellspacing="0" cellpadding="0">
-								<tr><th>地址</th>
-									<th>手机</th>
-									<th colspan="2">管理</th>
-									
-								</tr>
+							<table border="" cellspacing="0" cellpadding="0" id="ListAdd">
+
 								
-								<tr><td>成都市xx区xx路xx号</td>
-									<td>1355500000</td>
-									<td><button class="del">删除</button></td>
-									<td><button class="update">修改</button></td>
-								
-								</tr>
+
 								
 								
 							</table>
@@ -89,7 +82,7 @@
 							<div class="nav-right-head">
 								<span class="title">账户充值</span>
 							</div>
-								请输入金额：<input class="addcash" type="number" name="" id="" value="" />
+								请输入金额：<input class="addcash" type="number" name="" id=" " value="" />
 								<input class="sub" type="submit" value="充值"/>
 							</form>
 						</div>
@@ -99,8 +92,8 @@
 							</div>
 							<div class="pwd">
 								<form action="" method="post">
-									输入密码：<input class="oldpwd" type="" name="" id="" value="" /><br>
-									新密码：<input class="newpwd" type="" name="" id="" value="" /><br>
+									输入密码：<input class="oldpwd" type="" name="" id=" " value="" /><br>
+									新密码：<input class="newpwd" type="" name="" id=" " value="" /><br>
 									<input class="sub" type="submit" value="提交"/>
 								</form>
 							</div>
@@ -108,12 +101,13 @@
 					</div>
 						
 				</div>
-				<script type="text/javascript">
-	  function Read(obj) {
-        var file = obj.files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function (e) {    
+		<script type="text/javascript">
+
+	    function Read(obj) {
+        	var file = obj.files[0];
+        	var reader = new FileReader();
+       	 	reader.readAsDataURL(file);
+        	reader.onload = function (e) {
             var img = document.getElementById("selectImg");
             img.src = e.target.result;   
 
@@ -121,6 +115,17 @@
         };
     }
 	  onload =function(){
+		  var sex=document.getElementById("zql").value;
+		  var inp=document.getElementById("sex");
+		  var inp2=document.getElementById("sex1");
+		  if(sex==1)
+		  {
+			  inp.setAttribute("checked"," ");
+			  inp2.removeAttribute("checked");
+		  }else {
+			  inp2.setAttribute("checked"," ");
+			  inp.removeAttribute("checked");
+		  }
 	  	document.getElementById('box1').onclick = function(){
 	  		var pro = document.getElementById('pro');
 	  		var address = document.getElementById('address');
@@ -130,8 +135,25 @@
 	  		address.style.display='none';
 	  		cash.style.display='none';
 	  		pwd.style.display='none';
+
 	  	}
 	  	document.getElementById('box2').onclick = function(){
+		  	$.ajax({
+				url:"/Addr/get_addr",
+				dataType:"json",
+				success:function (data) {
+					var addr=" ";
+					for (var i=0;i<data.length;i++)
+					{
+						addr +="<tr><td>"+data[i].address+"</td> <td>"+data[i].phone+"</td> <td><button class='del'>删除</button></td> <td><button class='update'>修改</button></td></tr>";
+					}
+					var add="<tr><th>地址</th> <th>手机</th> <th colspan='2'>管理</th> </tr>"+addr;
+					$("#ListAdd").html(add);
+				},
+				error:function () {
+					alert("地址加载失败");
+				}
+			});
 	  		var pro = document.getElementById('pro');
 	  		var address = document.getElementById('address');
 	  		var cash = document.getElementById('cash');

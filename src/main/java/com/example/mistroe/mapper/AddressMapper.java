@@ -1,10 +1,8 @@
 package com.example.mistroe.mapper;
 
 import com.example.mistroe.pojo.Address;
-import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
-@Mapper
+
 public interface AddressMapper {
     int deleteByPrimaryKey(String idAddress);
 
@@ -15,4 +13,6 @@ public interface AddressMapper {
     List<Address> selectAll();
 
     int updateByPrimaryKey(Address record);
+
+    List<Address> getAddr(String name);
 }
