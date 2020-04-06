@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>淘米当</title>
+		<link rel="stylesheet" type="text/css" href="css/demo.css"/>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="css/profile.css"/>
+	</head>
+	<body>
+		<div class="top-navbar">
+			<ul class="nav">
+				<a href="index.html">首页 <span>|</span> </a>
+				<a href="sell.html">发布闲置 <span>|</span> </a>
+				<a href="profile.html">个人中心 <span>|</span> </a>
+				
+			</ul>
+			<div class="cart">
+				<a href="Cart.html"  id="cart"><span class="iconfont" >&#xe615;</span>  购物车（0）</a>
+				<a href="order.html"> | 订单管理 </a>
+				<a href="post.html"> | 物流管理 </a>
+				
+				
+			</div>
+		</div>
+		<div class="container">
+					<div class="nav-left">
+						<ul class="nav-left-ul">
+							<li class="item" id="box1">个人资料</li>
+							<li class="item" id="box2">收货地址管理</li>
+							<li class="item" id="box3">账号充值</li>
+							<li class="item" id="box4">修改密码</li>
+						</ul>
+					</div>
+					<div class="nav-right">
+						<div class="profile" id="pro">
+							<div class="nav-right-head">
+							<span class="title">基本资料</span>
+							<form action="" method="post">
+								<div class="head-img">
+									当前头像:<br>
+									<label for="file">
+										<input class="file" type="file" multiple=""  id="file" onchange="Read(this)"  /><br>
+									<img id="selectImg" src="img/logo.png"/>
+										<span class="head-btn">更换头像</span>
+									</label>
+								</div>
+								用户名：<input class="user" type="text" name="" id="" value="" /><br>
+								邮箱：<input class="email" type="email"><br>
+								性别：<input class="sex" type="radio" name="sex" id="sex" value="" checked="" />
+								<label for="sex">
+								 男<input class="sex1" type="radio" name="sex" id="sex" value="" /> 女<br>
+								 </label>
+								<input class="sub" type="submit" value="修改"/>
+							</form>
+						</div>
+					</div>
+						<div class="address" id="address">
+							<div class="nav-right-head">
+								<span class="title">地址管理</span>
+							</div>
+							<table border="" cellspacing="0" cellpadding="0">
+								<tr><th>地址</th>
+									<th>手机</th>
+									<th colspan="2">管理</th>
+									
+								</tr>
+								
+								<tr><td>成都市xx区xx路xx号</td>
+									<td>1355500000</td>
+									<td><button class="del">删除</button></td>
+									<td><button class="update">修改</button></td>
+								
+								</tr>
+								
+								
+							</table>
+							<form action="" method="post">
+								<span id="address">
+									编辑地址
+								</span><br>
+								地址信息：<input class="info" type="text"><br>
+								手机：<input class="tel" type="tel" name="" id="" value="" /><br>
+								<input class="sub" type="submit" value="提交"/>
+							</form>
+						</div>
+						<div class="cash" id="cash">
+							<form action="" method="post">
+							<div class="nav-right-head">
+								<span class="title">账户充值</span>
+							</div>
+								请输入金额：<input class="addcash" type="number" name="" id="" value="" />
+								<input class="sub" type="submit" value="充值"/>
+							</form>
+						</div>
+						<div class="pwd-change" id="pwd-change">
+							<div class="nav-right-head">
+								<span class="title">修改密码</span>
+							</div>
+							<div class="pwd">
+								<form action="" method="post">
+									输入密码：<input class="oldpwd" type="" name="" id="" value="" /><br>
+									新密码：<input class="newpwd" type="" name="" id="" value="" /><br>
+									<input class="sub" type="submit" value="提交"/>
+								</form>
+							</div>
+						</div>						
+					</div>
+						
+				</div>
+				<script type="text/javascript">
+	  function Read(obj) {
+        var file = obj.files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {    
+            var img = document.getElementById("selectImg");
+            img.src = e.target.result;   
+
+            
+        };
+    }
+	  onload =function(){
+	  	document.getElementById('box1').onclick = function(){
+	  		var pro = document.getElementById('pro');
+	  		var address = document.getElementById('address');
+	  		var cash = document.getElementById('cash');
+	  		var pwd = document.getElementById('pwd-change');
+	  		pro.style.display='block';
+	  		address.style.display='none';
+	  		cash.style.display='none';
+	  		pwd.style.display='none';
+	  	}
+	  	document.getElementById('box2').onclick = function(){
+	  		var pro = document.getElementById('pro');
+	  		var address = document.getElementById('address');
+	  		var cash = document.getElementById('cash');
+	  		var pwd = document.getElementById('pwd-change');
+	  		pro.style.display='none';
+	  		address.style.display='block';
+	  		cash.style.display='none';
+	  		pwd.style.display='none';
+	  	}
+	  	document.getElementById('box3').onclick = function(){
+	  		var pro = document.getElementById('pro');
+	  		var address = document.getElementById('address');
+	  		var cash = document.getElementById('cash');
+	  		var pwd = document.getElementById('pwd-change');
+	  		pro.style.display='none';
+	  		address.style.display='none';
+	  		cash.style.display='block';
+	  		pwd.style.display='none';
+	  	}
+	  	document.getElementById('box4').onclick = function(){
+	  		var pro = document.getElementById('pro');
+	  		var address = document.getElementById('address');
+	  		var cash = document.getElementById('cash');
+	  		var pwd = document.getElementById('pwd-change');
+	  		pro.style.display='none';
+	  		address.style.display='none';
+	  		cash.style.display='none';
+	  		pwd.style.display='block';
+	  	}
+	  }
+
+			</script>
+	</body>
+</html>

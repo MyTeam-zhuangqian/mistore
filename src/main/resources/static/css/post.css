@@ -1,0 +1,358 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: "微软雅黑";
+	list-style: none;
+	text-decoration: none;
+}
+li{
+	list-style: none;
+	cursor: pointer;
+}
+a{
+	list-style: none;
+	text-decoration: none;
+}
+@font-face {
+  font-family: 'iconfont';
+  src: url('iconfont.eot');
+  src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+      url('iconfont.woff2') format('woff2'),
+      url('iconfont.woff') format('woff'),
+      url('iconfont.ttf') format('truetype'),
+      url('iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.top-navbar{
+	display: flex;
+	height: 40px;
+	width: 100%;
+	text-align: center;
+	background: #ffb8b8;
+}
+.nav{
+	margin-left: 1000px;
+}
+nav a span{
+	color: #ffffff;
+	opacity: 0.5;
+}
+.top-navbar ul a{
+	font-size:12px ;
+	color: #fff;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 15px;
+	
+}
+.top-navbar ul a:hover{
+	color: #fff;
+}
+.cart{
+	margin-left: 20px;
+	
+	
+}
+.cart a{
+	height: 40px;
+	line-height: 40px;
+	font-size: 12px;
+	color: #FFFFFF;
+	margin-left: 5px;
+	
+
+	display: block;
+	float: left;
+}
+#cart{
+		width: 90px;
+		text-align: center;
+		background: 66,66,66;
+}
+#cart span{
+	font-size:14px ;
+}
+#cart:hover{
+	color: #FF6700;
+	background-color: #fff;
+
+}
+.container{
+	width: 80%;
+	height: 800px;
+	margin: 50px auto;
+	display: flex;
+}
+.container .nav-left{
+	width: 20%;
+	height: 100%;
+	text-align: center;
+}
+.container .nav-left ul li{
+	margin-top: 30px;
+	cursor: pointer;
+}
+.container .nav-right {
+	width: 80%;
+	height: 100%;
+	
+
+	
+}
+.container .nav-right ul li{
+	float: left;
+	margin-left: 150px;
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 30px;
+}
+.container .nav-right .buy{
+	width: 100%;
+	height: auto;
+	line-height: 100px;
+	text-align: center;
+	border: 1px solid gainsboro;
+
+	
+}
+.container .nav-right .buy .buy-ul{
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	border-bottom: 2px solid gainsboro;
+	padding-bottom: 5px;
+}
+.container .nav-right .buy .buy-ul li{
+	height: 30px;
+	width: 80px;
+
+	
+}
+.container .nav-right .buy .buy-box{
+	height: auto;
+	width: 100%;
+	margin-top: 60px;
+
+	
+}
+.container .nav-right .buy .buy-box ul li{
+	width: 100%;
+	height: 300px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: 150px;
+	float: none;
+	margin-left: 0;
+	display: flex;
+}
+.container .nav-right .buy .buy-box ul li .goods-img {
+	height: 100%;
+	width: 30%;
+
+	text-align: center;
+}
+.container .nav-right .buy .buy-box ul li .goods-img img{
+	height: 100%;
+	width: 100%;
+}
+.container .nav-right .buy .buy-box ul li .goods-info{
+
+	width: 70%;
+	height: 100%;
+	
+}
+
+
+.container .nav-right .buy .buy-box1{
+	height: auto;
+	width: 100%;
+	margin-top: 60px;
+	display: none;
+	
+}
+.container .nav-right .buy .buy-box1 ul li{
+	width: 100%;
+	height: 300px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: 150px;
+	float: none;
+	margin-left: 0;
+	display: flex;
+}
+.container .nav-right .buy .buy-box1 ul li .goods-img {
+	height: 100%;
+	width: 30%;
+
+	text-align: center;
+}
+.container .nav-right .buy .buy-box1 ul li .goods-img img{
+	height: 100%;
+	width: 100%;
+}
+.container .nav-right .buy .buy-box1 ul li .goods-info{
+
+	width: 70%;
+	height: 100%;
+	
+}
+
+.descrition{
+	font-size: 18px;
+	line-height: 26px;
+	margin-top: 20px;
+	font-weight: 300;
+}
+.price {
+	color: #FF6700;
+	margin-right: 300px;
+}
+.author{
+	font-size: 14px;
+	line-height: 26px;
+	color: rgb(60,60,60);
+}
+.container .nav-right .buy .buy-box ul li:hover{
+	background: rgb(248,248,248);
+}
+
+
+
+.container .nav-right .sell{
+	width: 100%;
+	height: auto;
+	line-height: 100px;
+	text-align: center;
+	border: 1px solid gainsboro;
+	display: none;
+
+	
+}
+.container .nav-right .sell .sell-ul{
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	border-bottom: 2px solid gainsboro;
+	padding-bottom: 5px;
+}
+.container .nav-right .sell .sell-ul li{
+	height: 30px;
+	width: 80px;
+
+	
+}
+.container .nav-right .sell .sell-box{
+	height: auto;
+	width: 100%;
+	margin-top: 60px;
+
+	
+}
+.container .nav-right .sell .sell-box ul li{
+	width: 100%;
+	height: 300px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: 150px;
+	float: none;
+	margin-left: 0;
+	display: flex;
+}
+.container .nav-right .sell .sell-box ul li .goods-img {
+	height: 100%;
+	width: 30%;
+
+	text-align: center;
+}
+.container .nav-right .sell .sell-box ul li .goods-img img{
+	height: 100%;
+	width: 100%;
+}
+.container .nav-right .sell .sell-box ul li .goods-info{
+
+	width: 70%;
+	height: 100%;
+	
+}
+.descrition{
+	font-size: 18px;
+	line-height: 26px;
+	margin-top: 20px;
+	font-weight: 300;
+}
+.price {
+	color: #FF6700;
+	margin-right: 300px;
+}
+.author{
+	font-size: 14px;
+	line-height: 26px;
+	color: rgb(60,60,60);
+}
+.container .nav-right .sell .sell-box ul li:hover{
+	background: rgb(248,248,248);
+}
+
+
+.container .nav-right .sell .sell-box1{
+	height: auto;
+	width: 100%;
+	margin-top: 60px;
+	display: none;
+	
+}
+.container .nav-right .sell .sell-box1 ul li{
+	width: 100%;
+	height: 300px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: 150px;
+	float: none;
+	margin-left: 0;
+	display: flex;
+}
+.container .nav-right .sell .sell-box1 ul li .goods-img {
+	height: 100%;
+	width: 30%;
+
+	text-align: center;
+}
+.container .nav-right .sell .sell-box1 ul li .goods-img img{
+	height: 100%;
+	width: 100%;
+}
+.container .nav-right .sell .sell-box1 ul li .goods-info{
+
+	width: 70%;
+	height: 100%;
+	
+}
+.descrition{
+	font-size: 18px;
+	line-height: 26px;
+	margin-top: 20px;
+	font-weight: 300;
+}
+.price {
+	color: #FF6700;
+	margin-right: 300px;
+}
+.author{
+	font-size: 14px;
+	line-height: 26px;
+	color: rgb(60,60,60);
+}
+.container .nav-right .sell .sell-box1 ul li:hover{
+	background: rgb(248,248,248);
+}
