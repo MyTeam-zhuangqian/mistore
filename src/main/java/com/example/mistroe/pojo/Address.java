@@ -9,6 +9,8 @@ public class Address implements Serializable {
 
     private String address;
 
+    private String phone;
+
     private static final long serialVersionUID = 1L;
 
     public String getIdAddress() {
@@ -33,5 +35,13 @@ public class Address implements Serializable {
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 }
