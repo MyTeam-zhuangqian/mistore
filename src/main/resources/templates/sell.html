@@ -10,9 +10,9 @@
 	<body>
 		<div class="top-navbar">
 			<ul class="nav">
-				<a href="index.html">首页 <span>|</span> </a>
-				<a href="">发布闲置 <span>|</span> </a>
-				<a href="">个人中心 <span>|</span> </a>
+				<a href="index">首页 <span>|</span> </a>
+				<a href="sell">发布闲置 <span>|</span> </a>
+				<a th:href="profile" id="personal_center" ><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span> <span>|</span> </a>
 				
 			</ul>
 			<div class="cart">
@@ -40,9 +40,9 @@
 						<img id="selectImg" src="img/test.jpg"/>
 					
 					</label><br>
-					<span class="p-des">请输入描述：</span><input class="sell-description" type="text" name="" id="" value="" /><br>
-					<span class="p-ath">请输入作者：</span><input class="sell-author" type="text" name="" id="" value="" /><br>
-					<span class="p-price">请输入价格：</span><input class="price" type="number" name="" id="" value="" /><br>
+					<span class="p-des">请输入描述：</span><input class="sell-description" type="text" name=""  value="" /><br>
+					<span class="p-ath">请输入作者：</span><input class="sell-author" type="text" name=""  value="" /><br>
+					<span class="p-price">请输入价格：</span><input class="price" type="number" name=""  value="" /><br>
 					<input class="sell-submit" type="submit" value="提交"/><br>
 					
 				</form>

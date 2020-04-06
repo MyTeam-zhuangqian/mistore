@@ -31,6 +31,11 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping("/register")
+    String register(){
+        return "register";
+    }
+
     @RequestMapping("/index")
     String index() {
         return "index";
@@ -42,12 +47,25 @@ public class LoginController {
     }
 
     @RequestMapping("/sell")
-    String sell() {
-        return "sell";
+    String sell(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user!=null){
+            return "sell";
+        }else {
+            return "login";
+        }
+
     }
 
     @RequestMapping("/Cart")
-    String Cart(){ return "Cart"; }
+    String Cart(HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        if (user!=null){
+            return "sell";
+        }else {
+            return "Cart";
+        }
+    }
 
     @RequestMapping("/Goodsinfo")
     String GoodsInfo(){ return "Goodsinfo"; }
@@ -68,9 +86,34 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/index_center")
-    ModelAndView indexCenter(){
-        return null;
+    @RequestMapping("/profile")
+    String profile(HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        if (user!=null){
+            return "profile";
+        }else {
+            return "login";
+        }
+    }
+
+    @RequestMapping("/order")
+    String order(HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        if (user!=null){
+            return "order";
+        }else {
+            return "login";
+        }
+    }
+
+    @RequestMapping("/post")
+    String post(HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        if (user!=null){
+            return "post";
+        }else {
+            return "login";
+        }
     }
 
 

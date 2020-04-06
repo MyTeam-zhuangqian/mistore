@@ -13,13 +13,13 @@
 <div class="top-navbar">
     <ul class="nav">
         <a href="index">首页 <span>|</span> </a>
-        <a href=""><span>发布闲置</span> <span>|</span> </a>
-        <a href="" id="personal_center" ><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span> <span>|</span> </a>
+        <a href="sell"><span>发布闲置</span> <span>|</span> </a>
+        <a th:href="profile" id="personal_center" ><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span> <span>|</span> </a>
 
     </ul>
     <div class="cart">
-        <a href="" id="cart"><span class="iconfont">&#xe615;</span> 购物车（0）</a>
-        <a href=""> | 订单管理 </a>
+        <a href="Cart" id="cart"><span class="iconfont">&#xe615;</span> 购物车（0）</a>
+        <a href="order"> | 订单管理 </a>
 
     </div>
 </div>
@@ -138,13 +138,13 @@
 
     </div>
     <div class="demo-item1">
-        <a href="index_center" class="iconfont demo-icon" id="personal_center_l">&#xe610;<h5>个人中心</h5></a>
+        <a th:href="${session.user!=null?'':'login'}" class="iconfont demo-icon" id="personal_center_l">&#xe610;<h5>个人中心</h5></a>
     </div>
     <div class="demo-item2">
         <a href="" class="iconfont demo-icon">&#xe61a;<h5>订单管理</h5></a>
     </div>
     <div class="demo-item3">
-        <a href="" class="iconfont demo-icon">&#xe607;<h5>发布闲置</h5></a>
+        <a href="sell" class="iconfont demo-icon">&#xe607;<h5>发布闲置</h5></a>
     </div>
 
     <div class="nav-left">
