@@ -27,7 +27,7 @@
 <div class="page-nav">
     <div class="pic">
         <a href="">
-            <img src="img/logo.png"/>
+            <img th:src="${session.user!=null?session.user.headPortrait:'img/logo.png'}"/>
         </a>
     </div>
     <ul class="nav-ul">

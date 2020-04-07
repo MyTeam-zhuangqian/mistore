@@ -76,54 +76,15 @@ public class User implements Serializable {
     }
 
     @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        User other = (User) that;
-        return (this.getIdUser() == null ? other.getIdUser() == null : this.getIdUser().equals(other.getIdUser()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getPwd() == null ? other.getPwd() == null : this.getPwd().equals(other.getPwd()))
-            && (this.getNickname() == null ? other.getNickname() == null : this.getNickname().equals(other.getNickname()))
-            && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
-            && (this.getHeadPortrait() == null ? other.getHeadPortrait() == null : this.getHeadPortrait().equals(other.getHeadPortrait()))
-            && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()));
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getIdUser() == null) ? 0 : getIdUser().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getPwd() == null) ? 0 : getPwd().hashCode());
-        result = prime * result + ((getNickname() == null) ? 0 : getNickname().hashCode());
-        result = prime * result + ((getSex() == null) ? 0 : getSex().hashCode());
-        result = prime * result + ((getHeadPortrait() == null) ? 0 : getHeadPortrait().hashCode());
-        result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
-        return result;
-    }
-
-    @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", idUser=").append(idUser);
-        sb.append(", name=").append(name);
-        sb.append(", pwd=").append(pwd);
-        sb.append(", nickname=").append(nickname);
-        sb.append(", sex=").append(sex);
-        sb.append(", headPortrait=").append(headPortrait);
-        sb.append(", email=").append(email);
-        sb.append("]");
-        return sb.toString();
+        return "User{" +
+                "idUser='" + idUser + '\'' +
+                ", name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", sex=" + sex +
+                ", headPortrait='" + headPortrait + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

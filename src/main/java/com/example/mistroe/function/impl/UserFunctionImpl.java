@@ -21,9 +21,14 @@ public class UserFunctionImpl implements UserFunction {
     public User loginGO(String name, String pwd) {
         User user = null;
         user = userMapper.selectUserByName(name);
+        System.out.println("*****************************************************************************");
+        System.out.println(user);
+        System.out.println("*****************************************************************************");
+
         if (user != null){
             if (pwd.equals(user.getPwd())){
                 user.setPwd("");
+
                 return user;
             }
         }

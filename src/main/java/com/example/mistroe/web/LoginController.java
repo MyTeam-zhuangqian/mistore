@@ -79,6 +79,7 @@ public class LoginController {
             //登陆成功
             user = userFunction.loginGO(name, pwd);
             request.getSession().setAttribute("user",user);
+            System.out.println("用户id"+user.getIdUser());
             return user;
         }catch (Exception e){
             //登陆失败

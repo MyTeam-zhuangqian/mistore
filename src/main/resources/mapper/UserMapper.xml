@@ -41,8 +41,8 @@
     select id_user, name, pwd, nickname, sex, head_portrait, email
     from user
   </select>
-
-  <select id="selectUserByName" parameterType="java.lang.String" resultType="com.example.mistroe.pojo.User">
-    select * from user where name =#{name ,jdbcType=VARCHAR}
+  <select id="selectUserByName" resultMap="BaseResultMap">
+    select id_user, name, pwd, nickname, sex, head_portrait, email
+    from user where name = #{name}
   </select>
 </mapper>

@@ -1,6 +1,8 @@
 package com.example.mistroe.mapper;
 
 import com.example.mistroe.pojo.User;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface UserMapper {
@@ -13,6 +15,5 @@ public interface UserMapper {
     List<User> selectAll();
 
     int updateByPrimaryKey(User record);
-
-    User selectUserByName(String name);
+    User selectUserByName(@Param("name")String name);
 }
