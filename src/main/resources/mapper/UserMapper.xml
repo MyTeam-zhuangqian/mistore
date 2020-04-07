@@ -41,8 +41,8 @@
     select id_user, name, pwd, nickname, sex, head_portrait, email
     from user
   </select>
-  <select id="selectUserByName" resultMap="BaseResultMap">
+  <select id="selectUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
     select id_user, name, pwd, nickname, sex, head_portrait, email
-    from user where name = #{name}
+    from user where name =#{name,jdbcType=VARCHAR}
   </select>
 </mapper>

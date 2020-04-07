@@ -13,7 +13,7 @@
         <!--<context id="Mysql" targetRuntime="MyBatis3">-->
         <!--产生序列化  hashcode    toString 方法-->
 <!--        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>-->
-<!--        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
