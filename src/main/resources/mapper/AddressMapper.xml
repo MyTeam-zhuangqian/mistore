@@ -33,8 +33,7 @@
     select id_address, user_id, address, phone
     from address
   </select>
-
-  <select id="getAddr" resultMap="BaseResultMap" parameterType="java.lang.String">
-    select * from address where user_id = #{name,jdbcType=VARCHAR}
+  <select id="getAddr" resultMap="BaseResultMap">
+    select id_address, user_id, address, phone from address where user_id = #{name}
   </select>
 </mapper>

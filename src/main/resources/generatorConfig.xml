@@ -60,7 +60,7 @@
 
 
 
-        <table tableName="user" domainObjectName="User"
+        <table tableName="address" domainObjectName="Address"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

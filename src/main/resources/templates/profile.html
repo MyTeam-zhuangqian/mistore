@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="cn">
 	<head>
 		<meta charset="UTF-8">
 		<title>淘米当</title>
@@ -42,7 +42,7 @@
 									当前头像:<br>
 									<label for="file">
 										<input class="file" type="file" multiple=""  id="file" onchange="Read(this)"  /><br>
-									<img id="selectImg" src="${session.user.headPortrait}"/>
+									<img id="selectImg" th:src="${session.user.headPortrait}"/>
 										<span class="head-btn">更换头像</span>
 									</label>
 								</div>
