@@ -45,4 +45,9 @@
     select id_user, name, pwd, nickname, sex, head_portrait, email
     from user where name =#{name,jdbcType=VARCHAR}
   </select>
+  <update id="ChangePwd" parameterType="com.example.mistroe.pojo.User">
+    update user
+    set pwd = #{newpwd,jdbcType=VARCHAR}
+    where id_user = #{idUser,jdbcType=VARCHAR}
+  </update>
 </mapper>

@@ -15,4 +15,11 @@ public interface AddressMapper {
     int updateByPrimaryKey(Address record);
 
     List<Address> getAddr(String name);
+
+    int UpAddr(String addr, String iphone, String idaddr);
+
+    int InsertAddr(String dz, String tel,String idaddress, String idUser);
+
+    int Del(String id);
+
 }

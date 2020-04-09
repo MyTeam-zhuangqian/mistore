@@ -37,4 +37,20 @@
   <select id="getAddr" resultMap="BaseResultMap" parameterType="java.lang.String">
     select * from address where user_id = #{name,jdbcType=VARCHAR}
   </select>
+  <update id="UpAddr" parameterType="java.lang.String">
+    update address
+    set address = #{addr,jdbcType=VARCHAR},
+      phone = #{iphone,jdbcType=VARCHAR}
+    where id_address = #{idaddr,jdbcType=VARCHAR}
+  </update>
+  <insert id="InsertAddr" parameterType="java.lang.String">
+    insert into address (id_address, user_id, address,
+      phone)
+    values (#{idaddress,jdbcType=VARCHAR}, #{idUser,jdbcType=VARCHAR}, #{dz,jdbcType=VARCHAR},
+      #{tel,jdbcType=VARCHAR})
+  </insert>
+  <delete id="Del" parameterType="java.lang.String">
+    delete from address
+    where id_address = #{id,jdbcType=VARCHAR}
+  </delete>
 </mapper>

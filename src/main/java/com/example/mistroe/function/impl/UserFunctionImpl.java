@@ -27,7 +27,7 @@ public class UserFunctionImpl implements UserFunction {
 
         if (user != null){
             if (pwd.equals(user.getPwd())){
-                user.setPwd("");
+                //user.setPwd("");
 
                 return user;
             }
