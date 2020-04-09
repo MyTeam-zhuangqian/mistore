@@ -1,13 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="cn">
 	<head>
 		<meta charset="UTF-8">
 		<title>淘米当</title>
 		<link rel="stylesheet" type="text/css" href="css/demo.css"/>
 		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="css/profile.css"/>
+		<link rel="stylesheet" type="text/css" href="js/layui/css/layui.css">
 		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="js/layui/layui.js"></script>
 	</head>
+	<div style="display: none" id="demo2">
+		<form class="layui-form" id="form" style="margin-top: 30px">
+			<div class="layui-form-item">
+				<label class="layui-form-label">地址</label>
+				<div class="layui-input-block">
+					<input type="text" name="addr" id="adr" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">电话</label>
+				<div class="layui-input-block">
+					<input type="number" name="iphone" id="iph" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<input type="hidden" name="idaddr"id="idaddr" autocomplete="off" class="layui-input">
+		</form>
+	</div>
 	<body>
 		<div class="top-navbar">
 			<ul class="nav">
@@ -42,7 +61,7 @@
 									当前头像:<br>
 									<label for="file">
 										<input class="file" type="file" multiple=""  id="file" onchange="Read(this)"  /><br>
-									<img id="selectImg" src="${session.user.headPortrait}"/>
+									<img id="selectImg" th:src="${session.user.headPortrait}"/>
 										<span class="head-btn">更换头像</span>
 									</label>
 								</div>
@@ -61,28 +80,24 @@
 							<div class="nav-right-head">
 								<span class="title">地址管理</span>
 							</div>
-							<table border="" cellspacing="0" cellpadding="0" id="ListAdd">
-
-								
-
-								
-								
+							<table class="layui-hide" id="ListAdd" lay-filter="test">
+								<script type="text/html" id="barDemo">
+									<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+									<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+								</script>
 							</table>
-							<form action="" method="post">
-								<span id="address">
-									编辑地址
-								</span><br>
-								地址信息：<input class="info" type="text"><br>
-								手机：<input class="tel" type="tel" name="" id="" value="" /><br>
-								<input class="sub" type="submit" value="提交"/>
+							<form id="form2" class="layui-form">
+								地址信息：<input class="info"  name="DZ" type="text"><br>
+								手机：<input class="tel" type="tel" name="tel" /><br>
 							</form>
+							<button class="sub" id="Tj" />提交</button>
 						</div>
 						<div class="cash" id="cash">
 							<form action="" method="post">
 							<div class="nav-right-head">
 								<span class="title">账户充值</span>
 							</div>
-								请输入金额：<input class="addcash" type="number" name="" id=" " value="" />
+								请输入金额：<input class="addcash" type="number" name=""  value="" />
 								<input class="sub" type="submit" value="充值"/>
 							</form>
 						</div>
@@ -91,17 +106,149 @@
 								<span class="title">修改密码</span>
 							</div>
 							<div class="pwd">
-								<form action="" method="post">
-									输入密码：<input class="oldpwd" type="" name="" id=" " value="" /><br>
-									新密码：<input class="newpwd" type="" name="" id=" " value="" /><br>
-									<input class="sub" type="submit" value="提交"/>
+								<form id="form3">
+									输入密码：<input class="oldpwd" type="password" name="pwd"  value="" /><br>
+									新密码：<input class="newpwd" type="password" name="newpwd"  value="" /><br>
+
 								</form>
+								<button class="sub" id="ChaP" type="submit">提交</button>
 							</div>
 						</div>						
 					</div>
 						
 				</div>
 		<script type="text/javascript">
+			layui.use(['table','layer'], function(){
+				var table = layui.table
+				,layer=layui.layer
+				 var $=layui.jquery
+				document.getElementById('box2').onclick = function(){
+					table.render({
+						elem: '#ListAdd'
+						,url:'/Addr/get_addr/'
+						,parseData: function(res){ //res 即为原始返回的数据
+							return {
+								"code": res.status, //解析接口状态
+								"msg": res.message, //解析提示文本
+								"count": res.total, //解析数据长度
+								"data": res.data //解析数据列表
+							};
+						}
+						,cols: [
+								[ //表头
+
+							{field: 'address', title: '地址'}
+							,{field: 'phone', title: '手机'}
+							,{toolbar: '#barDemo'}
+							]
+						]
+					});
+					table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+								var data = obj.data //获得当前行数据
+										,layEvent = obj.event; //获得 lay-event 对应的值
+								if(layEvent === 'del'){
+									layer.confirm('真的删除行么', function(index){
+
+										$.ajax({
+											url:'/Addr/Del',
+											type: 'POST',
+											dataType: 'text',
+											data: {id:data.idAddress},
+											success:function (res) {
+												layer.msg("删除成功！");
+												obj.del(); //删除对应行（tr）的DOM结构
+												layer.close(index);
+											},
+											error:function () {
+												layer.msg("删除失败，请重试！");
+											}
+										});
+									});
+								} else if(layEvent === 'edit'){
+									$("#adr").val(data.address);
+									$("#iph").val(data.phone);
+									$("#idaddr").val(data.idAddress);
+									layer.open({
+										type: 1,
+										area:'500px',
+										content:$('#demo2'),
+										skin:'layui-layer-lan',
+										btn:['修改','取消'],
+										yes:function(index, layero){
+											$.ajax({
+												url:'/Addr/Update',
+												type: 'POST',
+												dataType: 'text',
+												data: $("#form").serialize(),
+												success:function (res) {
+													layer.msg("修改成功！");
+													obj.update({
+														address: $("#adr").val(),
+														phone: $("#iph").val()
+													});
+													layer.close(index);
+												},
+												error:function () {
+													layer.msg("修改失败，请重试！");
+												}
+											});
+
+										},
+										btn2:function () {
+											return true;
+										}
+									});
+
+						}
+					});
+					var pro = document.getElementById('pro');
+					var address = document.getElementById('address');
+					var cash = document.getElementById('cash');
+					var pwd = document.getElementById('pwd-change');
+					pro.style.display='none';
+					address.style.display='block';
+					cash.style.display='none';
+					pwd.style.display='none';
+				}
+				$("#Tj").click(function (){
+					$.ajax({
+						url:'/Addr/Insert',
+						type: 'POST',
+						dataType: 'text',
+						data: $("#form2").serialize(),
+						success:function (res) {
+							layer.msg("添加成功！");
+							$("#box2").click();
+						},
+						error:function () {
+							layer.msg("添加失败，请重试！");
+						}
+					});
+				});
+				$("#ChaP").click(function () {
+					$.ajax({
+						url:'/Addr/ChangePwd',
+						type: 'POST',
+						dataType: 'text',
+						data: $("#form3").serialize(),
+						success:function (res) {
+							if(res==0){
+								layer.msg("旧密码错误!")
+							}else {
+								layer.msg("修改成功，请重新登录！")
+								setInterval(function () {
+									$(location).attr('href', '/login');
+								},1000)
+							}
+						},
+						error:function () {
+							layer.msg("修改失败！");
+						}
+					});
+				});
+
+			});
+
 
 	    function Read(obj) {
         	var file = obj.files[0];
@@ -137,32 +284,7 @@
 	  		pwd.style.display='none';
 
 	  	}
-	  	document.getElementById('box2').onclick = function(){
-		  	$.ajax({
-				url:"/Addr/get_addr",
-				dataType:"json",
-				success:function (data) {
-					var addr=" ";
-					for (var i=0;i<data.length;i++)
-					{
-						addr +="<tr><td>"+data[i].address+"</td> <td>"+data[i].phone+"</td> <td><button class='del'>删除</button></td> <td><button class='update'>修改</button></td></tr>";
-					}
-					var add="<tr><th>地址</th> <th>手机</th> <th colspan='2'>管理</th> </tr>"+addr;
-					$("#ListAdd").html(add);
-				},
-				error:function () {
-					alert("地址加载失败");
-				}
-			});
-	  		var pro = document.getElementById('pro');
-	  		var address = document.getElementById('address');
-	  		var cash = document.getElementById('cash');
-	  		var pwd = document.getElementById('pwd-change');
-	  		pro.style.display='none';
-	  		address.style.display='block';
-	  		cash.style.display='none';
-	  		pwd.style.display='none';
-	  	}
+
 	  	document.getElementById('box3').onclick = function(){
 	  		var pro = document.getElementById('pro');
 	  		var address = document.getElementById('address');
