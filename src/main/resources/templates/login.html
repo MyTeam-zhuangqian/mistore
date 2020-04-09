@@ -16,19 +16,18 @@
             <input class="login-user" type="username" name="name"/><br>
             <input class="login-pwd" type="password" name="pwd"/><br>
             <input class="login-lg" type="button" value="登录" id="login"/>
-            <button class="register"><a href="/register" >注册</a></button>
+            <button class="register"><a href="/register">注册</a></button>
         </form>
         <button class="register" hidden="hidden"><a href="/index"><span id="index">首页</span></a></button>
     </div>
 </div>
 </body>
-<script src="js/layui/layui.js"></script>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="/layui/layui.js"></script>
 <script type="text/javascript">
-    layui.use(["layer"], function () {
-        var layer = layui.layer,
-			$ = layui.jquery;
-
-        $("#login").click(function () {
+    $("#login").click(function () {
+        layui.use(["layer"], function () {
+            var layer = layui.layer;
             $.ajax({
                 url: '/login_go',
                 type: 'POST',
@@ -37,9 +36,9 @@
                 success: function (res) {
                     layer.msg('欢迎' + res.nickname);
                     //alert('欢迎'+res.nickname);
-					setInterval(function () {
-						$(location).attr('href', '/index');
-					},1000)
+                    setInterval(function () {
+                        $(location).attr('href', '/index');
+                    }, 1000)
 
                 },
                 error: function () {
