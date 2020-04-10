@@ -7,7 +7,9 @@ public class Buy implements Serializable {
 
     private Integer isBuy;
 
-    private Integer goodId;
+    private String goodId;
+
+    private String userId;
 
     private static final long serialVersionUID = 1L;
 
@@ -27,11 +29,33 @@ public class Buy implements Serializable {
         this.isBuy = isBuy;
     }
 
-    public Integer getGoodId() {
+    public String getGoodId() {
         return goodId;
     }
 
-    public void setGoodId(Integer goodId) {
-        this.goodId = goodId;
+    public void setGoodId(String goodId) {
+        this.goodId = goodId == null ? null : goodId.trim();
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", idBuy=").append(idBuy);
+        sb.append(", isBuy=").append(isBuy);
+        sb.append(", goodId=").append(goodId);
+        sb.append(", userId=").append(userId);
+        sb.append("]");
+        return sb.toString();
     }
 }

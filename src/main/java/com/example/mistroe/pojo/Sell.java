@@ -9,6 +9,8 @@ public class Sell implements Serializable {
 
     private String goodId;
 
+    private String userId;
+
     private static final long serialVersionUID = 1L;
 
     public String getIdSell() {
@@ -33,5 +35,27 @@ public class Sell implements Serializable {
 
     public void setGoodId(String goodId) {
         this.goodId = goodId == null ? null : goodId.trim();
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", idSell=").append(idSell);
+        sb.append(", isSell=").append(isSell);
+        sb.append(", goodId=").append(goodId);
+        sb.append(", userId=").append(userId);
+        sb.append("]");
+        return sb.toString();
     }
 }

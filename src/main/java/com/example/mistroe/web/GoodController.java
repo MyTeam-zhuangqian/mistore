@@ -2,10 +2,13 @@ package com.example.mistroe.web;
 
 import com.example.mistroe.function.GoodFunction;
 import com.example.mistroe.pojo.Good;
+import com.example.mistroe.pojo.GoodType;
+import com.example.mistroe.pojo.User;
 import com.example.mistroe.util.Result;
 import com.example.mistroe.util.UpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-import static com.example.mistroe.util.UpUtils.upfile;
 
 /**
  * @author zlin
@@ -28,11 +30,11 @@ public class GoodController {
 
     @RequestMapping("/upload")
     @ResponseBody
-    public Result upload(MultipartFile file, HttpServletRequest request){
+    public Result upload(MultipartFile file, HttpServletRequest request) {
         //System.out.println("图片上传================================================");
         Result result = new Result();
         try {
-            UpUtils.upfile(file,request);
+            UpUtils.upfile(file, request);
             result.setStatus(0);
             result.setMessage(file.getOriginalFilename());
             return result;
@@ -44,6 +46,37 @@ public class GoodController {
         }
     }
 
+    @RequestMapping("/insert")
+    @ResponseBody
+    @Transactional //开启事务（开启事务的方法必须是public）
+    public Result insert(Good good ,HttpServletRequest request) {
+        User user= (User)request.getSession().getAttribute("user");
+        int i = goodFunction.insert(good,user.getIdUser());
+        Result result = new Result();
+        if (i == 1){
+            result.setStatus(0);
+        }else {
+            result.setStatus(500);
+            result.setMessage("网络繁忙！");
+        }
+        return result;
+    }
+
+    @RequestMapping("/selectAllType")
+    @ResponseBody
+    Result selectAllType() {
+        List<GoodType> goodTypes = null;
+        goodTypes = goodFunction.selectAllType();
+        Result result = new Result();
+        if (goodTypes != null){
+            result.setStatus(0);
+            result.setData(goodTypes);
+        }else {
+            result.setStatus(500);
+            result.setMessage("网络繁忙！");
+        }
+        return result;
+    }
     @RequestMapping("/CE")
     @ResponseBody
     List<Good> CE(String ty,HttpServletRequest request){

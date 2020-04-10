@@ -70,6 +70,11 @@ public class LoginController {
     @ResponseBody
     User loginGo(String name, String pwd, HttpServletRequest request) {
         User user = null;
+        user = (User)request.getSession().getAttribute("user");
+        if (user!=null){
+            request.getSession().setAttribute("user",user);
+            return user;
+        }
         //执行登陆方法
         try {
             //登陆成功

@@ -34,20 +34,28 @@
         <div class="sell-left-head">
             添加商品
         </div>
-        <form action="" method="post">
-            <label  class="sell-pic">
+        <form id="insert_good_form">
+            <label class="sell-pic">
 
-                <button style="background-color: pink" class="sell-ipt layui-btn" type="button" name="" id="upload_img" value="点击添加书籍照片"/>
+                <input style="background-color: pink" class="sell-ipt" id="upload_img" type="button">点击添加书籍照片</input>
 
                 <img id="selectImg" src="img/test.jpg"/>
                 <p id="demoText"></p>
 
-            </label><br>
-            <input type="text" name="img" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" id="sc">
-            <span class="p-des">请输入描述：</span><input class="sell-description" type="text" name="description" value=""/><br>
+            </label>
+            <a hidden="hidden"><input type="text" name="img" lay-verify="title" autocomplete="off" placeholder=""
+                                      class="layui-input" id="sc"></a>
+            <span class="p-des">请输入描述：</span><input class="sell-description" type="text" name="description"
+                                                    value=""/><br>
+            <span class="p-des">请选择类型：</span>
+            <div class="layui-input-inline">
+                <select name="type" class="sell-author" id="good_type">
+                    <option value="" selected="">请选择类型</option>
+                </select>
+            </div><br>
             <span class="p-ath">请输入作者：</span><input class="sell-author" type="text" name="author" value=""/><br>
             <span class="p-price">请输入价格：</span><input class="price" type="number" name="price" value=""/><br>
-            <input class="sell-submit" type="submit" value="提交"/><br>
+            <input class="sell-submit" type="button" value="提交" id="submit"/><br>
 
         </form>
     </div>
@@ -56,41 +64,5 @@
 </body>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="/layui/layui.js"></script>
-<script>
-    layui.use(['layer', 'upload'], function () {
-        var layer = layui.layer //弹层
-            ,
-            upload = layui.upload;//上传图片
-
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '#upload_img'
-            , url: 'http://localhost:8080/good/upload' //改成您自己的上传接口
-            ,before: function(obj){
-                //预读本地文件示例，不支持ie8
-                obj.preview(function(index, file, result){
-                    $('#selectImg').attr('src', result); //图片链接（base64）
-                });
-            }
-            , done: function (res) {
-                if (res.status == 0) {
-                    //上传成功
-                    $("#sc").val(res.message);
-                    return  layer.msg('上传成功');
-                }else {
-                    return layer.msg('上传失败');
-                }
-
-            }
-            , error: function () {
-                //演示失败状态，并实现重传
-                var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function () {
-                    uploadInst.upload();
-                });
-            }
-        });
-    });
-</script>
+<script src="js/sell.js"></script>
 </html>

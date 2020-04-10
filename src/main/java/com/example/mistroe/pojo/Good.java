@@ -64,4 +64,16 @@ public class Good implements Serializable {
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Good{" +
+                "idGood='" + idGood + '\'' +
+                ", img='" + img + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", author='" + author + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }
