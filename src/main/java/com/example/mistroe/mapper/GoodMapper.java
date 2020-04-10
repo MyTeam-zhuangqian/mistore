@@ -15,4 +15,6 @@ public interface GoodMapper {
     List<Good> selectAll();
 
     int updateByPrimaryKey(Good record);
+
+    List<Good> gatGoodByType(String ty);
 }

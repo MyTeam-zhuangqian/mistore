@@ -21,4 +21,9 @@ public class GoodFunctionImpl implements GoodFunction {
 
         return goodMapper.selectAll();
     }
+
+    @Override
+    public List<Good> getGoodByType(String ty) {
+        return goodMapper.gatGoodByType(ty);
+    }
 }

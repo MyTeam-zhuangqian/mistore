@@ -37,4 +37,8 @@
     select id_good, img, description, price, author, type
     from good
   </select>
+  <select id="gatGoodByType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id_good, img, description, price, author
+    from good where type =#{ty,jdbcType=VARCHAR}
+  </select>
 </mapper>

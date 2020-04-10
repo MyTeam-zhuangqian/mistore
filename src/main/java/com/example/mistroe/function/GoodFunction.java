@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface GoodFunction {
     public List<Good> getAllGood();
+
+    List<Good> getGoodByType(String ty);
 }
