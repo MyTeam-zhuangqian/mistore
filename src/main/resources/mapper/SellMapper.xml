@@ -5,32 +5,32 @@
     <id column="id_sell" jdbcType="VARCHAR" property="idSell" />
     <result column="is_sell" jdbcType="INTEGER" property="isSell" />
     <result column="good_id" jdbcType="VARCHAR" property="goodId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sell
     where id_sell = #{idSell,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.example.mistroe.pojo.Sell">
-    insert into sell (id_sell, is_sell, good_id
-      )
-    values (#{idSell,jdbcType=VARCHAR}, #{isSell,jdbcType=INTEGER}, #{goodId,jdbcType=VARCHAR}
-      )
+    insert into sell (id_sell, is_sell, good_id, 
+      user_id)
+    values (#{idSell,jdbcType=VARCHAR}, #{isSell,jdbcType=INTEGER}, #{goodId,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.example.mistroe.pojo.Sell">
     update sell
     set is_sell = #{isSell,jdbcType=INTEGER},
-      good_id = #{goodId,jdbcType=VARCHAR}
+      good_id = #{goodId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR}
     where id_sell = #{idSell,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id_sell, is_sell, good_id
+    select id_sell, is_sell, good_id, user_id
     from sell
     where id_sell = #{idSell,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id_sell, is_sell, good_id
+    select id_sell, is_sell, good_id, user_id
     from sell
   </select>
-
-
 </mapper>

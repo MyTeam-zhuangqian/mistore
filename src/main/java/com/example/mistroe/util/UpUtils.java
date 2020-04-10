@@ -15,7 +15,7 @@ public class UpUtils {
 		String realPath = request.getSession().getServletContext().getRealPath("/img/");
 		System.out.println(realPath);
 		//获取本地路径
-		String basePath="F:\\IdeaProjects\\mistore\\src\\main\\resources\\static\\img\\";
+		String basePath=System.getProperty("user.dir")+"\\src\\main\\resources\\static\\img\\";
 
 		//创建一个文件夹
 		File file1 = new File(realPath);

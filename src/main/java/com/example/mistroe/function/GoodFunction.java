@@ -1,6 +1,7 @@
 package com.example.mistroe.function;
 
 import com.example.mistroe.pojo.Good;
+import com.example.mistroe.pojo.GoodType;
 
 import java.util.List;
 
@@ -10,4 +11,8 @@ import java.util.List;
  */
 public interface GoodFunction {
     public List<Good> getAllGood();
+
+    List<GoodType> selectAllType();
+
+    int insert(Good good,String idUser);
 }

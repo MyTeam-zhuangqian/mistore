@@ -60,7 +60,12 @@
 
 
 
-        <table tableName="address" domainObjectName="Address"
+        <table tableName="sell" domainObjectName="Sell"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+<table tableName="buy" domainObjectName="Buy"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
