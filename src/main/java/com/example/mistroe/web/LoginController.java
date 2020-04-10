@@ -57,9 +57,9 @@ public class LoginController {
     String Cart(HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         if (user!=null){
-            return "sell";
-        }else {
             return "Cart";
+        }else {
+            return "login";
         }
     }
 

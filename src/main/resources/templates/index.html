@@ -100,15 +100,15 @@
 
     <div class="nav-left">
         <ul class="nav-left-ul">
-            <li><a>四六级</a> <span class="iconfont">&#xe6cf;</span></li>
-            <li><a>计算机专区</a> <span class="iconfont">&#xe6cf;</span></li>
-            <li><a>考证专区</a> <span class="iconfont">&#xe6cf;</span></li>
-            <li><a>考公专区</a> <span class="iconfont">&#xe6cf;</span></li>
-            <li><a>考研专区</a> <span class="iconfont">&#xe6cf;</span></li>
-            <li><a>文学作品</a> <span class="iconfont">&#xe6cf;</span></li>
-            <li><a>中外名著</a> <span class="iconfont">&#xe6cf;</span></li>
-            <li><a>数学</a> <span class="iconfont">&#xe6cf;</span></li>
-            <li><a>音体美</a> <span class="iconfont">&#xe6cf;</span></li>
+            <li><a onclick="Load('CE','type01')">四六级</a> <span class="iconfont">&#xe6cf;</span></li>
+            <li><a onclick="Load('PC','type02')">计算机专区</a> <span class="iconfont">&#xe6cf;</span></li>
+            <li><a onclick="Load('KZ','type03')">考证专区</a> <span class="iconfont">&#xe6cf;</span></li>
+            <li><a onclick="Load('KG','type04')">考公专区</a> <span class="iconfont">&#xe6cf;</span></li>
+            <li><a onclick="Load('KY','type05')">考研专区</a> <span class="iconfont">&#xe6cf;</span></li>
+            <li><a onclick="Load('WX','type06')">文学作品</a> <span class="iconfont">&#xe6cf;</span></li>
+            <li><a onclick="Load('ZW','type07')">中外名著</a> <span class="iconfont">&#xe6cf;</span></li>
+            <li><a onclick="Load('SX','type08')">数学</a> <span class="iconfont">&#xe6cf;</span></li>
+            <li><a onclick="Load('MU','type09')">音体美</a> <span class="iconfont">&#xe6cf;</span></li>
         </ul>
     </div>
     <div class="poster">
@@ -339,6 +339,20 @@
             });
         });
     });
+    function Load(addr,ces) {
+        $.ajax({
+            url: "/good/"+addr,
+            dataType: "json",
+            data:{ty:ces},
+            success: function () {
+                //alert("测试");
+                $(location).attr('href', '/good');
+            },
+            error:function () {
+                alert("加载失败");
+            }
+        });
+    }
 </script>
 </body>
 

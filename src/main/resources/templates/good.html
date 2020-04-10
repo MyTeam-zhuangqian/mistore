@@ -11,8 +11,8 @@
 <div class="top-navbar">
     <ul class="nav">
         <a href="index">首页 <span>|</span> </a>
-        <a href="sell">发布闲置 <span>|</span> </a>
-        <a href="profile">个人中心 <span>|</span> </a>
+        <a href="sell"><span>发布闲置</span> <span>|</span> </a>
+        <a th:href="profile" id="personal_center" ><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span> <span>|</span> </a>
 
     </ul>
     <div class="cart">
@@ -33,12 +33,12 @@
 <i class="divide"></i>
 <div class="container">
     <ul class="goods-ul" id="Goods">
-        <li class="goods-item" th:each="">
-            <a href=""><img src="img/goods1.jpg.jfif"/></a>
+        <li class="goods-item" th:each="g:${session.goods}">
+            <a href=""><img th:src="${g.img}"/></a>
             <div class="goods-message">
-                <p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-                <span class="price">￥72.80元</span>
-                <p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社</p>
+                <p class="descrition" th:text="${g.description}"></p>
+                <span class="price" th:text="${g.price}"></span>
+                <p class="author" th:text="${g.author}"></p>
                 <a class="add-cart" href="">加入购物车</a>
                 <a class="collect" href="">收藏</a>
             </div>
@@ -47,5 +47,5 @@
 </div>
 </body>
 <script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/Goods.js"></script>
+<!--<script src="js/Goods.js"></script>-->
 </html>

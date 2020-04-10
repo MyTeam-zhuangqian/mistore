@@ -11,15 +11,14 @@
 		<div class="top-navbar">
 			<ul class="nav">
 				<a href="index">首页 <span>|</span> </a>
-				<a href="sell">发布闲置 <span>|</span> </a>
-				<a href="profile">个人中心 <span>|</span> </a>
-				
+				<a href="sell"><span>发布闲置</span> <span>|</span> </a>
+				<a th:href="profile" id="personal_center" ><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span> <span>|</span> </a>
+
 			</ul>
 			<div class="cart">
-				<a href="Cart"  id="cart"><span class="iconfont" >&#xe615;</span>  购物车（0）</a>
+				<a href="Cart" id="cart"><span class="iconfont">&#xe615;</span> 购物车（0）</a>
 				<a href="order"> | 订单管理 </a>
-				
-				
+
 			</div>
 		</div>
 		<div class="container">

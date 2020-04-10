@@ -9,6 +9,7 @@ import com.example.mistroe.util.UpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -81,92 +82,82 @@ public class GoodController {
     @ResponseBody
     List<Good> CE(String ty,HttpServletRequest request){
 
-        List<Good> goods=(List<Good>)request.getAttribute("goods");
-        if(goods==null){
-            List<Good> goodList=goodFunction.getGoodByType(ty);
-            request.setAttribute("goods",goodList);
-            return goodList;
-        }else {
-            return goods;
-        }
+        request.getSession().setAttribute("goods",null);
+        List<Good> goods=goodFunction.getGoodByType(ty);
+        request.getSession().setAttribute("goods",goods);
+        return goods;
     }
     @RequestMapping("/PC")
     @ResponseBody
     List<Good> PC(String ty,HttpServletRequest request){
 
-        List<Good> goods=(List<Good>)request.getAttribute("good02");
-        if(goods==null){
-            List<Good> goodList=goodFunction.getGoodByType(ty);
-            request.setAttribute("good02",goodList);
-            return goodList;
-        }else {
-            return goods;
-        }
+        request.getSession().setAttribute("goods",null);
+        List<Good> goods=goodFunction.getGoodByType(ty);
+        request.getSession().setAttribute("goods",goods);
+        return goods;
     }
     @RequestMapping("/KZ")
     @ResponseBody
     List<Good> KZ(String ty,HttpServletRequest request){
 
-        List<Good> goods=(List<Good>)request.getAttribute("good03");
-        if(goods==null){
-            List<Good> goodList=goodFunction.getGoodByType(ty);
-            request.setAttribute("good03",goodList);
-            return goodList;
-        }else {
-            return goods;
-        }
+        request.getSession().setAttribute("goods",null);
+        List<Good> goods=goodFunction.getGoodByType(ty);
+        request.getSession().setAttribute("goods",goods);
+        return goods;
     }
     @RequestMapping("/KG")
     @ResponseBody
     List<Good> KG(String ty,HttpServletRequest request){
 
-        List<Good> goods=(List<Good>)request.getAttribute("good04");
-        if(goods==null){
-            List<Good> goodList=goodFunction.getGoodByType(ty);
-            request.setAttribute("good04",goodList);
-            return goodList;
-        }else {
-            return goods;
-        }
+        request.getSession().setAttribute("goods",null);
+        List<Good> goods=goodFunction.getGoodByType(ty);
+        request.getSession().setAttribute("goods",goods);
+        return goods;
     }
     @RequestMapping("/KY")
     @ResponseBody
     List<Good> KY(String ty,HttpServletRequest request){
 
-        List<Good> goods=(List<Good>)request.getAttribute("good05");
-        if(goods==null){
-            List<Good> goodList=goodFunction.getGoodByType(ty);
-            request.setAttribute("good05",goodList);
-            return goodList;
-        }else {
-            return goods;
-        }
+        request.getSession().setAttribute("goods",null);
+        List<Good> goods=goodFunction.getGoodByType(ty);
+        request.getSession().setAttribute("goods",goods);
+        return goods;
     }
     @RequestMapping("/WX")
     @ResponseBody
     List<Good> WX(String ty,HttpServletRequest request){
 
-        List<Good> goods=(List<Good>)request.getAttribute("good06");
-        if(goods==null){
-            List<Good> goodList=goodFunction.getGoodByType(ty);
-            request.setAttribute("good06",goodList);
-            return goodList;
-        }else {
-            return goods;
-        }
+        request.getSession().setAttribute("goods",null);
+        List<Good> goods=goodFunction.getGoodByType(ty);
+        request.getSession().setAttribute("goods",goods);
+        return goods;
     }
     @RequestMapping("/ZW")
     @ResponseBody
     List<Good> ZW(String ty,HttpServletRequest request){
 
-        List<Good> goods=(List<Good>)request.getAttribute("good07");
-        if(goods==null){
-            List<Good> goodList=goodFunction.getGoodByType(ty);
-            request.setAttribute("good07",goodList);
-            return goodList;
-        }else {
-            return goods;
-        }
+        request.getSession().setAttribute("goods",null);
+        List<Good> goods=goodFunction.getGoodByType(ty);
+        request.getSession().setAttribute("goods",goods);
+        return goods;
+    }
+    @RequestMapping("/SX")
+    @ResponseBody
+    List<Good> SX(String ty,HttpServletRequest request){
+
+        request.getSession().setAttribute("goods",null);
+        List<Good> goods=goodFunction.getGoodByType(ty);
+        request.getSession().setAttribute("goods",goods);
+        return goods;
+    }
+    @RequestMapping("/MU")
+    @ResponseBody
+    List<Good> MU(String ty,HttpServletRequest request){
+
+        request.getSession().setAttribute("goods",null);
+        List<Good> goods=goodFunction.getGoodByType(ty);
+        request.getSession().setAttribute("goods",goods);
+        return goods;
     }
 //    @RequestMapping("/test")
 //    @ResponseBody
