@@ -70,6 +70,7 @@ public class LoginController {
     @ResponseBody
     User loginGo(String name, String pwd, HttpServletRequest request) {
         User user = null;
+        request.getSession().setAttribute("money",300.00);
         user = (User)request.getSession().getAttribute("user");
         if (user!=null){
             request.getSession().setAttribute("user",user);

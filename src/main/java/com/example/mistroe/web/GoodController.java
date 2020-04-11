@@ -159,6 +159,7 @@ public class GoodController {
         request.getSession().setAttribute("goods",goods);
         return goods;
     }
+
 //    @RequestMapping("/test")
 //    @ResponseBody
 //    List<Good> test() {
