@@ -4,7 +4,7 @@ layui.use(['layer', 'upload'], function () {
         upload = layui.upload;//上传图片
 
     //普通图片上传
-    upload.render({
+    var uploadInst = upload.render({
         elem: '#upload_img'
         , url: 'http://localhost:8080/good/upload' //改成您自己的上传接口
         , before: function (obj) {

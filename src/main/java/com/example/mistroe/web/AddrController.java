@@ -5,14 +5,12 @@ import com.example.mistroe.pojo.Address;
 import com.example.mistroe.pojo.User;
 import com.example.mistroe.util.Result;
 import com.example.mistroe.util.UUIDUtils;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

@@ -13,4 +13,5 @@ public interface UserFunction {
     User loginGO(String name, String pwd);
 
 
+    int insert(User user);
 }
