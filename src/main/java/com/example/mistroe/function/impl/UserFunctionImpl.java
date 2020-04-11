@@ -4,6 +4,7 @@ package com.example.mistroe.function.impl;
 import com.example.mistroe.function.UserFunction;
 import com.example.mistroe.mapper.UserMapper;
 import com.example.mistroe.pojo.User;
+import com.example.mistroe.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,14 @@ public class UserFunctionImpl implements UserFunction {
             }
         }
         return null;
+    }
+
+    @Override
+    public int insert(User user) {
+        user.setIdUser(UUIDUtils.getUUIDAsString());
+        String img = "img/" + user.getHeadPortrait();
+        user.setHeadPortrait(img);
+        return userMapper.insert(user);
     }
 
 

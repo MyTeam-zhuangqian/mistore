@@ -1,49 +1,101 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>淘米当</title>
-		<link rel="stylesheet" type="text/css" href="css/register .css"/>
-	</head>
-	<body>
-		<div class="container">
-			<div class="head">
-				<span>用户注册</span>
+<head>
+    <meta charset="UTF-8">
+    <title>淘米当</title>
+    <link rel="stylesheet" type="text/css" href="css/register .css"/>
+    <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+</head>
+<body>
+<div class="container">
+    <div class="head">
+        <span>用户注册</span>
+    </div>
+    <div class="body">
+        <form method="post" id="form">
+			<div class="layui-upload">
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img" id="selectImg">
+                </div>
+				<button type="button" class="head-btn" id="upload_img">上传图片</button>
+                <p id="demoText"></p>
 			</div>
-			<div class="body">
-				<form action="" method="post">
-					<div class="head-img">
+            <a hidden="hidden"><input type="text" name="headPortrait" lay-verify="title" autocomplete="off" placeholder=""
+                                      class="layui-input" id="sc"></a>
 
-									<label for="file">
-										<input class="file" type="file" multiple=""  id="file" onchange="Read(this)"  /><br>
-									<img id="selectImg" src="img/logo.png"/>
-										<span class="head-btn">上传头像</span>
-									</label>
-								</div>
-								昵称： <input class="email" type="text" name="" id="" value="" /><br>
-								用户名：<input class="user" type="text" name="" id="" value="" /><br>
-								邮箱：<input class="email" type="email"><br>
-								密码：<input class="pwd" type="password"><br>
-								性别：<input class="sex" type="radio" name="sex" id="sex" value="sex"  checked="checked"/>
-								<label for="sex">
-								 男<input class="sex1" type="radio" name="sex" id="sex" value="sex" /> 女<br>
-								 </label>
-					<input class="sub" type="submit" value="提交"/>
-				</form>
-			</div>
-		</div>
-		<script type="text/javascript">
-			function Read(obj) {
-        var file = obj.files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function (e) {    
-            var img = document.getElementById("selectImg");
-            img.src = e.target.result;   
+            昵称： <input class="email" type="text" name="nickname"  value=""/><br>
+            用户名：<input class="user" type="text" name="name"  value="" property="手机号码"/><br>
+            邮箱：<input class="email" type="email" name="email"><br>
+            密码：<input class="pwd" type="password" name="pwd"><br>
+            性别：<input class="sex" type="radio" name="sex" id="sex" value="1" checked="checked"/>
+            <label for="sex">
+                男<input class="sex1" type="radio" name="sex" id="sex" value="0"/> 女<br>
+            </label>
+            <input class="sub" type="submit" value="提交" id="submit"/>
+        </form>
+    </div>
+</div>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(['layer', 'upload'], function () {
+        var layer = layui.layer //弹层
+            ,
+            upload = layui.upload;//上传图片
 
-            
-        };
-    }
-		</script>
-	</body>
+        //普通图片上传
+        var  uploadInst = upload.render({
+            elem: '#upload_img'
+            , url: 'http://localhost:8080/good/upload' //改成您自己的上传接口
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#selectImg').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                if (res.status == 0) {
+                    //上传成功
+                    $("#sc").val(res.message);
+                    //return layer.msg('上传成功');
+                } else {
+                    return layer.msg('上传失败');
+                }
+
+            }
+            , error: function () {
+                layer.msg('网络繁忙，请重新选择');
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+        $("#form").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'http://localhost:8080/user/insert',
+                type: 'POST',
+                dataType: 'json',
+                data: $('#form').serialize(),
+                success: function (res) {
+                    if (res.status==0){
+                        layer.msg('注册成功');
+                        setTimeout(function () {
+                            $(location).attr('href','http://localhost:8080/login')
+                        })
+                    }else {
+                        layer.msg(res.message)
+                    }
+                },
+                error:function () {
+                    layer.msg('网络繁忙请稍后重试');
+                }
+            })
+        })
+    });
+</script>
+</body>
 </html>
