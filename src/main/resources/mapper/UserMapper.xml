@@ -50,4 +50,9 @@
     set pwd = #{newpwd,jdbcType=VARCHAR}
     where id_user = #{idUser,jdbcType=VARCHAR}
   </update>
+  <update id="updateHeadPortrait" parameterMap="BaseResultMap">
+    update user
+    set head_portrait = #{headPortrait}
+    where id = #{idUser}
+  </update>
 </mapper>
