@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author zlin
  * @date 2020/4/11 11:30
@@ -32,6 +34,27 @@ public class UserController {
             result.setStatus(-1);
             result.setMessage("网络繁忙");
         }
+        return result;
+    }
+    @RequestMapping("/updateHeadPortrait")
+    @ResponseBody
+    @Transactional
+    public Result updateHeadPortrait(String img, HttpServletRequest request){
+        img = "img/"+img;
+        Result result = new Result();
+        User user = (User)request.getSession().getAttribute("user");
+        if (user !=null){
+            user.setHeadPortrait(img);
+            int i = userFunction.updateHeadPortrait(user);
+            if (i == 1){
+                result.setStatus(0);
+                request.getSession().setAttribute("user",user);
+            }else {
+                result.setStatus(-1);
+                result.setMessage("网络繁忙");
+            }
+        }
+
         return result;
     }
 }

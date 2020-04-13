@@ -40,5 +40,10 @@ public class UserFunctionImpl implements UserFunction {
         return userMapper.insert(user);
     }
 
+    @Override
+    public int updateHeadPortrait(User user) {
+        return userMapper.updateHeadPortrait(user);
+    }
+
 
 }

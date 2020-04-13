@@ -18,4 +18,6 @@ public interface UserMapper {
     User selectUserByName(@Param("name")String name);
 
     int ChangePwd(String newpwd, String idUser);
+
+    int updateHeadPortrait(User user);
 }

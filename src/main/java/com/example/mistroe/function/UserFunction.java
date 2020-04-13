@@ -14,4 +14,6 @@ public interface UserFunction {
 
 
     int insert(User user);
+
+    int updateHeadPortrait(User user);
 }
