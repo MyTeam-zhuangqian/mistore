@@ -68,7 +68,8 @@ public class LoginController {
 
     @RequestMapping("/login_go")
     @ResponseBody
-    User loginGo(String name, String pwd, HttpServletRequest request) {
+    User loginGo(String name, String pwd, HttpServletRequest request){
+        System.out.println(name+" "+pwd);
         User user = null;
         request.getSession().setAttribute("money",300.00);
         user = (User)request.getSession().getAttribute("user");
@@ -77,13 +78,10 @@ public class LoginController {
             return user;
         }
         //执行登陆方法
-        try {
+        else{
             //登陆成功
             user = userFunction.loginGO(name, pwd);
             request.getSession().setAttribute("user",user);
-            return user;
-        }catch (Exception e){
-            //登陆失败
             return user;
         }
     }

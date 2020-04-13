@@ -15,7 +15,7 @@ public interface UserMapper {
     List<User> selectAll();
 
     int updateByPrimaryKey(User record);
-    User selectUserByName(@Param("name")String name);
+    User selectUserByName(String name);
 
     int ChangePwd(String newpwd, String idUser);
 
