@@ -16,4 +16,8 @@ public interface UserFunction {
     int insert(User user);
 
     int updateHeadPortrait(User user);
+
+    int update(User user);
+
+    User selectUserById(String idUser);
 }

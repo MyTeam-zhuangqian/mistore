@@ -14,7 +14,7 @@
     <ul class="nav">
         <a href="index">首页 <span>|</span> </a>
         <a href="sell"><span>发布闲置</span> <span>|</span> </a>
-        <a th:href="profile" id="personal_center" ><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span> <span>|</span> </a>
+        <a th:href="profile" id="personal_center" ><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span> <span> |</span> </a>
 
     </ul>
     <div class="cart">
@@ -82,7 +82,9 @@
         </li>
 
     </ul>
-    <input type="" name="" id="" value="" class="search-input"/>
+
+    <!--搜索框-->
+    <input type="" name="" id="search" value="" class="search-input"/>
     <button class="iconfont" id="search-button">&#xe600;</button>
     <div class="nav-left">
 

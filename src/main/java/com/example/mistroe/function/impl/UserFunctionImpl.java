@@ -45,5 +45,17 @@ public class UserFunctionImpl implements UserFunction {
         return userMapper.updateHeadPortrait(user);
     }
 
+    @Override
+    public int update(User user) {
+        return userMapper.updateByPrimaryKey(user);
+    }
+
+    @Override
+    public User selectUserById(String idUser) {
+        User user = userMapper.selectByPrimaryKey(idUser);
+        user.setPwd("");
+        return user;
+    }
+
 
 }

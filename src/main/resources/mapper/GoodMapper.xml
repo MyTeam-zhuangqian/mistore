@@ -41,6 +41,12 @@
     select id_good, img, description, price, author
     from good where type =#{ty,jdbcType=VARCHAR}
   </select>
+  <select id="selectGoodByKey" resultMap="BaseResultMap">
+    select id_good, img, description, price, author, type
+    from good
+    where description like #{key}
+    or author like #{key}
+  </select>
   <select id="getGoodById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id_good, img, description, price, author,type
     from good where id_good =#{goodid,jdbcType=VARCHAR}

@@ -1,209 +1,281 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="cn">
-	<head>
-		<meta charset="UTF-8">
-		<title>淘米当</title>
-		<link rel="stylesheet" type="text/css" href="css/demo.css"/>
-		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
-		<link rel="stylesheet" type="text/css" href="css/profile.css"/>
-        <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
-        <script type="text/javascript" src="layui/layui.js"></script>
-		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-	</head>
-	<body>
-    <div style="display: none;margin-top: 30px" id="Change">
-        <form class="layui-form" id="form">
-            <div class="layui-form-item">
-                <label class="layui-form-label">地址</label>
-                <div class="layui-input-block">
-                    <input type="text" name="addr" id="addr" class="layui-input">
-                </div>
+<head>
+    <meta charset="UTF-8">
+    <title>淘米当</title>
+    <link rel="stylesheet" type="text/css" href="css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<div style="display: none;margin-top: 30px" id="Change">
+    <form class="layui-form" id="form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="addr" id="addr" class="layui-input">
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">电话</label>
-                <div class="layui-input-block">
-                    <input type="text" name="iphone" id="phone" class="layui-input">
-                </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">电话</label>
+            <div class="layui-input-block">
+                <input type="text" name="iphone" id="phone" class="layui-input">
             </div>
-            <input type="hidden" name="idaddr" id="ida" value="" class="layui-input">
-        </form>
+        </div>
+        <input type="hidden" name="idaddr" id="ida" value="" class="layui-input">
+    </form>
+</div>
+<div class="top-navbar">
+    <ul class="nav">
+        <a href="index">首页 <span>|</span> </a>
+        <a href="sell">发布闲置 <span>|</span> </a>
+        <a href="profile"><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span><span> |</span></a>
+
+    </ul>
+    <div class="cart">
+        <a href="Cart" id="cart"><span class="iconfont">&#xe615;</span> 购物车（0）</a>
+        <a href="order"> | 订单管理 </a>
+        <a href="post"> | 物流管理 </a>
+
+
     </div>
-		<div class="top-navbar">
-			<ul class="nav">
-				<a href="index">首页 <span>|</span> </a>
-				<a href="sell">发布闲置 <span>|</span> </a>
-				<a href="profile"><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span><span>|</span></a>
-				
-			</ul>
-			<div class="cart">
-				<a href="Cart"  id="cart"><span class="iconfont" >&#xe615;</span>  购物车（0）</a>
-				<a href="order"> | 订单管理 </a>
-				<a href="post"> | 物流管理 </a>
-				
-				
-			</div>
-		</div>
-		<div class="container">
-					<div class="nav-left">
-						<ul class="nav-left-ul">
-							<li class="item" id="box1">个人资料</li>
-							<li class="item" id="box2">收货地址管理</li>
-							<li class="item" id="box3">账号充值</li>
-							<li class="item" id="box4">修改密码</li>
-						</ul>
-					</div>
-					<div class="nav-right">
-						<div class="profile" id="pro">
-							<div class="nav-right-head">
-							<span class="title">基本资料</span>
-							<form action="" method="post">
-								<div class="head-img">
-									当前头像:<br>
-									<label for="file">
-										<input class="file" type="file" multiple=""  id="file" onchange="Read(this)"  /><br>
-									<img id="selectImg" th:src="${session.user.headPortrait}"/>
-										<span class="head-btn">更换头像</span>
-									</label>
-								</div>
-								用户名：<input class="user" type="text" name="" id=" " th:value="${session.user.nickname}" /><br>
-								邮箱：<input class="email" type="email" th:value="${session.user.email}"><br>
-								性别：<input class="sex" type="radio" name="sex" id="sex" value="" />
-								<input id="zql" type="hidden" th:value="${session.user.sex}">
-								<label for="sex">
-								 男<input class="sex1" type="radio" name="sex" id="sex1" value="" checked="" /> 女<br>
-								 </label>
-								<input class="sub" type="submit" value="修改"/>
-							</form>
-						</div>
-					</div>
-						<div class="address" id="address">
-							<div class="nav-right-head">
-								<span class="title">地址管理</span>
-							</div>
-							<table class="layui-hide" lay-filter="test" id="ListAdd"></table>
-                            <script type="text/html" id="barDemo">
-                                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-                                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                            </script>
-							<form id="form2">
-								地址信息：<input class="info" name="DZ" type="text"><br>
-								手机：<input class="tel" type="tel" name="tel" value="" /><br>
-							</form>
-                            <input class="sub" id="Tj" type="submit" value="提交"/>
-						</div>
-						<div class="cash" id="cash">
-							<form id="form4">
-							<div class="nav-right-head">
-								<span class="title">账户充值</span>
-							</div>
-								请输入金额：<input class="addcash" type="number" name="mon" value="" />
-							</form>
-                            <input class="sub" id="CZ" type="submit" value="充值"/>
-                        </div>
-						<div class="pwd-change" id="pwd-change">
-							<div class="nav-right-head">
-								<span class="title">修改密码</span>
-							</div>
-							<div class="pwd">
-								<form id="form3">
-									输入密码：<input class="oldpwd" type="password" name="pwd" value="" /><br>
-									新密码：<input class="newpwd" type="password" name="newpwd" value="" /><br>
-								</form>
-                                <input class="sub" id="pwd" type="submit" value="提交"/>
-							</div>
-						</div>						
-					</div>
-						
-				</div>
-		<script type="text/javascript">
-            layui.use(['layer','table'],function () {
-                var layer=layui.layer,
-                    table=layui.table;
-                var $=layui.jquery;
-                document.getElementById('box2').onclick = function(){
-                    table.render({
-                        elem: '#ListAdd'
-                        ,url: '/Addr/get_addr' //数据接口
-                        ,parseData: function(res){ //res 即为原始返回的数据
-                            return {
-                                "code": res.status, //解析接口状态
-                                "msg": res.message, //解析提示文本
-                                "count": res.total, //解析数据长度
-                                "data": res.data //解析数据列表
-                            };
-                        }
-                        ,cols: [
-                            [ //表头
-                                {field: 'address', title: '地址'}
-                                ,{field: 'phone', title: '电话'}
-                                ,{fixed: 'right',align:'center', toolbar: '#barDemo'}
-                            ]
-                        ]
+</div>
+<div class="container">
+    <div class="nav-left">
+        <ul class="nav-left-ul">
+            <li class="item" id="box1">个人资料</li>
+            <li class="item" id="box2">收货地址管理</li>
+            <li class="item" id="box3">账号充值</li>
+            <li class="item" id="box4">修改密码</li>
+        </ul>
+    </div>
+    <div class="nav-right">
+        <div class="profile" id="pro">
+            <div class="nav-right-head">
+                <span class="title">基本资料</span>
+                <form  method="post" id="form_in">
+                    <div hidden="hidden">
+                        <input type="text" name="idUser" th:value="${session.user.idUser}">
+                    </div>
+                    <div class="head-img">
+                        当前头像:<br>
+                        <label >
+                            <img id="selectImg" th:src="${session.user.headPortrait}"/>
+							<button type="button" class="head-btn" id="upload_img">更换头像</button>
+							<p id="demoText"></p>
+							<a hidden="hidden"><input type="text" name="img" lay-verify="title" autocomplete="off" placeholder=""
+													  class="layui-input" id="sc"></a>
+                        </label>
+                    </div>
+                    用户名：<input class="user" type="text" name="nickname" id="nickname" th:value="${session.user.nickname}"/><br>
+                    邮箱：<input class="email" type="email" name="email" id="email" th:value="${session.user.email}"><br>
+                    <div class="layui-input-block" style="margin-left: 0">
+                        性别：
+                        <input type="radio" name="sex" value="1" title="男" th:checked="${session.user.sex==1}">男
+                        <input type="radio" name="sex" value="0" title="女" th:checked="${session.user.sex==0}">女
+                    </div>
+                    <input class="sub" type="button" value="修改" id="user_update"/>
+                </form>
+            </div>
+        </div>
+        <div class="address" id="address">
+            <div class="nav-right-head">
+                <span class="title">地址管理</span>
+            </div>
+            <table class="layui-hide" lay-filter="test" id="ListAdd"></table>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+            </script>
+            <form id="form2">
+                地址信息：<input class="info" name="DZ" type="text"><br>
+                手机：<input class="tel" type="tel" name="tel" value=""/><br>
+            </form>
+            <input class="sub" id="Tj" type="submit" value="提交"/>
+        </div>
+        <div class="cash" id="cash">
+            <form id="form4">
+                <div class="nav-right-head">
+                    <span class="title">账户充值</span>
+                </div>
+                请输入金额：<input class="addcash" type="number" name="mon" value=""/>
+            </form>
+            <input class="sub" id="CZ" type="submit" value="充值"/>
+        </div>
+        <div class="pwd-change" id="pwd-change">
+            <div class="nav-right-head">
+                <span class="title">修改密码</span>
+            </div>
+            <div class="pwd">
+                <form id="form3">
+                    输入密码：<input class="oldpwd" type="password" name="pwd" value=""/><br>
+                    新密码：<input class="newpwd" type="password" name="newpwd" value=""/><br>
+                </form>
+                <input class="sub" id="pwd" type="submit" value="提交"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $("#user_update").click(function () {
+        $.ajax({
+            url: 'http://localhost:8080/user/update',
+            type: 'POST',
+            dataType: 'json',
+            data: $("#form_in").serialize(),
+            success: function (res) {
+                if (res.status == 0) {
+                    layer.msg('修改成功');
+                } else {
+                    layer.msg(res.message)
+                }
+            },
+            error: function () {
+                layer.msg('网络繁忙请稍后重试');
+            }
+            //return layer.msg('上传成功'
+        })
+    });
+    layui.use(['layer', 'table', 'upload'], function () {
+        var layer = layui.layer,
+            table = layui.table,
+            upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#upload_img'
+            , url: 'http://localhost:8080/good/upload' //改成您自己的上传接口
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#selectImg').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                if (res.status == 0) {
+                    //上传成功
+                    $("#sc").val(res.message);
+					$.ajax({
+						url: 'http://localhost:8080/user/updateHeadPortrait',
+						type: 'POST',
+						dataType: 'json',
+						data: {img: $("#sc").val()},
+						success: function (res) {
+							if (res.status == 0) {
+								layer.msg('修改成功');
+							} else {
+								layer.msg(res.message)
+							}
+						},
+						error: function () {
+							layer.msg('网络繁忙请稍后重试');
+						}
+						//return layer.msg('上传成功'
+					});
+                }else {
+                    return layer.msg('上传失败');
+                }
+
+            }
+            , error: function () {
+                layer.msg('网络繁忙，请重新选择');
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+
+        document.getElementById('box2').onclick = function () {
+            table.render({
+                elem: '#ListAdd'
+                , url: '/Addr/get_addr' //数据接口
+                , parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": res.status, //解析接口状态
+                        "msg": res.message, //解析提示文本
+                        "count": res.total, //解析数据长度
+                        "data": res.data //解析数据列表
+                    };
+                }
+                , cols: [
+                    [ //表头
+                        {field: 'address', title: '地址'}
+                        , {field: 'phone', title: '电话'}
+                        , {fixed: 'right', align: 'center', toolbar: '#barDemo'}
+                    ]
+                ]
+            });
+            table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+                var data = obj.data //获得当前行数据
+                    , layEvent = obj.event; //获得 lay-event 对应的值
+                if (layEvent === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del(); //删除对应行（tr）的DOM结构
+                        layer.close(index);
+                        //向服务端发送删除指令
+                        $.ajax({
+                            url: '/Addr/Del',
+                            type: 'POST',
+                            dataType: 'text',
+                            data: {id: data.idAddress},
+                            success: function (i) {
+                                if (i == 1) {
+                                    obj.del(); //删除对应行（tr）的DOM结构
+                                    layer.close(index);
+                                    layer.msg("删除成功");
+                                } else {
+                                    layer.msg("删除失败，请重试！");
+                                }
+                            },
+                            error: function () {
+                                layer.msg("删除失败，请重试！");
+                                return false;
+                            }
+                        })
                     });
-                    table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-                        var data = obj.data //获得当前行数据
-                            ,layEvent = obj.event; //获得 lay-event 对应的值
-                        if(layEvent === 'del'){
-                            layer.confirm('真的删除行么', function(index){
-                                obj.del(); //删除对应行（tr）的DOM结构
-                                layer.close(index);
-                                //向服务端发送删除指令
-                                $.ajax({
-                                    url:'/Addr/Del',
-                                    type:'POST',
-                                    dataType:'text',
-                                    data:{id:data.idAddress},
-                                    success:function (i) {
-                                        if(i==1){
-                                            obj.del(); //删除对应行（tr）的DOM结构
-                                            layer.close(index);
-                                            layer.msg("删除成功");
-                                        }else {
-                                            layer.msg("删除失败，请重试！");
-                                        }
-                                    } ,
-                                    error:function () {
-                                        layer.msg("删除失败，请重试！");
-                                        return false;
+                } else if (layEvent === 'edit') {
+                    $("#addr").val(data.address);
+                    $("#phone").val(data.phone);
+                    $("#ida").val(data.idAddress);
+                    layer.open({
+                        type: 1,
+                        title: '地址编辑',
+                        area: '500px',
+                        content: $('#Change'),
+                        skin: 'layui-layer-lan',
+                        btn: ['修改', '取消'],
+                        yes: function (index, layero) {
+                            $.ajax({
+                                url: '/Addr/Update',
+                                type: 'POST',
+                                dataType: 'text',
+                                data: $("#form").serialize(),
+                                success: function (i) {
+                                    if (i == 1) {
+                                        obj.update({
+                                            address: $("#addr").val()
+                                            , phone: $("#phone").val()
+                                        });
+                                        layer.close(index);
+                                        layer.msg("修改成功");
+                                    } else {
+                                        layer.msg("修改失败，请重试！");
                                     }
-                                })
+                                },
+                                error: function () {
+                                    layer.msg("修改失败，请重试！");
+                                    return false;
+                                }
                             });
-                        } else if(layEvent === 'edit'){
-                            $("#addr").val(data.address);
-                            $("#phone").val(data.phone);
-                            $("#ida").val(data.idAddress);
-                            layer.open({
-                              type:1,
-                              title:'地址编辑',
-                              area:'500px',
-                              content:$('#Change'),
-                              skin:'layui-layer-lan',
-                              btn:['修改','取消'],
-                              yes:function (index,layero) {
-                                  $.ajax({
-                                     url:'/Addr/Update',
-                                     type:'POST',
-                                     dataType:'text',
-                                     data:$("#form").serialize(),
-                                     success:function (i) {
-                                         if(i==1){
-                                             obj.update({
-                                                 address: $("#addr").val()
-                                                 ,phone:  $("#phone").val()
-                                             });
-                                             layer.close(index);
-                                             layer.msg("修改成功");
-                                         }else {
-                                             layer.msg("修改失败，请重试！");
-                                         }
-                                     } ,
-                                      error:function () {
-                                          layer.msg("修改失败，请重试！");
-                                          return false;
-                                      }
-                                  });
-                              }
-                            });
+                        }
+                    });
 
                         }
                     });
@@ -258,7 +330,7 @@
                  });
                 $("#CZ").click(function () {
                    $.ajax({
-                       url:'/Addr/CZ',
+                       url:'',
                        datatype:'text',
                        data:$("#form4").serialize(),
                        success:function () {

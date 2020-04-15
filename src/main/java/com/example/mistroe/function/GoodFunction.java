@@ -20,6 +20,9 @@ public interface GoodFunction {
 
     int insert(Good good,String idUser);
 
+    List<Good> getGoodByKey(String key);
+
+
     Good getGoodById(String goodid);
 
     int SaveCar(Save save);

@@ -57,4 +57,21 @@ public class UserController {
 
         return result;
     }
+    @RequestMapping("/update")
+    @ResponseBody
+    @Transactional
+    public Result update(User user,HttpServletRequest request){
+        Result result = new Result();
+        System.out.println(user+"\n===============================================================================================");
+        int i = userFunction.update(user);
+        if (i == 1){
+            result.setStatus(0);
+            User user1 = userFunction.selectUserById(user.getIdUser());
+            request.getSession().setAttribute("user",user1);
+        }else {
+            result.setStatus(-1);
+            result.setMessage("网络异常");
+        }
+        return  result;
+    }
 }
