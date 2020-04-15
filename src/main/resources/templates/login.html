@@ -29,7 +29,7 @@
         layui.use(["layer"], function () {
             var layer = layui.layer;
             $.ajax({
-                url: '/login_go',
+                url: 'http://localhost:8080/login_go',
                 type: 'POST',
                 dataType: 'json',
                 data: $("#form").serialize(),
@@ -42,7 +42,7 @@
 
                 },
                 error: function () {
-                    alert("用户名密码错误！");
+                    layer.msg("用户名密码错误！");
                 }
             });
         });

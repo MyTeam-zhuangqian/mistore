@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Key;
 import java.util.List;
 
 
@@ -160,11 +161,21 @@ public class GoodController {
         return goods;
     }
 
-//    @RequestMapping("/test")
-//    @ResponseBody
-//    List<Good> test() {
-//        List<Good> goods = null;
-//        goods = goodFunction.getAllGood();
-//        return goods;
-//    }
+    @RequestMapping("/search")
+    @ResponseBody
+    Result search(String key ,HttpServletRequest request) {
+        List<Good> goods = null;
+        goods = goodFunction.getGoodByKey(key);
+        Result result = new Result();
+        if(goods != null){
+            request.getSession().setAttribute("goods",goods);
+            result.setStatus(0);
+        }else {
+            result.setStatus(-1);
+            result.setMessage("网络异常");
+        }
+
+
+        return result;
+    }
 }

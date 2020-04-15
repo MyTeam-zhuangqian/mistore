@@ -41,4 +41,10 @@
     select id_good, img, description, price, author
     from good where type =#{ty,jdbcType=VARCHAR}
   </select>
+  <select id="selectGoodByKey" resultMap="BaseResultMap">
+    select id_good, img, description, price, author, type
+    from good
+    where description like #{key}
+    or author like #{key}
+  </select>
 </mapper>

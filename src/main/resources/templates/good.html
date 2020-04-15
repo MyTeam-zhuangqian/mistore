@@ -12,7 +12,7 @@
     <ul class="nav">
         <a href="index">首页 <span>|</span> </a>
         <a href="sell"><span>发布闲置</span> <span>|</span> </a>
-        <a th:href="profile" id="personal_center" ><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span> <span>|</span> </a>
+        <a th:href="profile" id="personal_center" ><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span> <span> |</span> </a>
 
     </ul>
     <div class="cart">
@@ -23,8 +23,8 @@
 </div>
 <div class="search">
 
-    <input class="search-input" type="" name="" value=""/>
-    <input class="search-btn" type="submit" name="" value="搜索"/>
+    <input class="search-input" type="" name="" value="" id="search"/>
+    <input class="search-btn" id="search-button" type="button" name="" value="搜索"/>
 </div>
 <div class="page-nav">
     <a href="Cart" class="iconfont" id="cart">&#xe615;购物车<span>0</span></a>
@@ -34,7 +34,7 @@
 <div class="container">
     <ul class="goods-ul" id="Goods">
         <li class="goods-item" th:each="g:${session.goods}">
-            <a href=""><img th:src="${g.img}"/></a>
+            <a th:href="${'http://localhost:8080/good/goodInfo?id='+g.idGood}"><img th:src="${g.img}"/></a>
             <div class="goods-message">
                 <p class="descrition" th:text="${g.description}"></p>
                 <span class="price" th:text="${g.price}"></span>
@@ -47,5 +47,6 @@
 </div>
 </body>
 <script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/index.js"></script>
 <!--<script src="js/Goods.js"></script>-->
 </html>

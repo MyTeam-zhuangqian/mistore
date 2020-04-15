@@ -59,4 +59,10 @@ public class GoodFunctionImpl implements GoodFunction {
         }
 
     }
+
+    @Override
+    public List<Good> getGoodByKey(String key) {
+        key = "%"+key+"%";
+        return goodMapper.selectGoodByKey(key);
+    }
 }

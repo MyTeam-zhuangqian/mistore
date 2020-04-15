@@ -2,6 +2,7 @@ package com.example.mistroe.mapper;
 
 import com.example.mistroe.pojo.Good;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 @Mapper
@@ -17,4 +18,6 @@ public interface GoodMapper {
     int updateByPrimaryKey(Good record);
 
     List<Good> gatGoodByType(String ty);
+
+    List<Good> selectGoodByKey(@Param("key")String key);
 }

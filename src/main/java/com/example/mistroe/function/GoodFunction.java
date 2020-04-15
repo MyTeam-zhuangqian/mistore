@@ -17,4 +17,7 @@ public interface GoodFunction {
     List<GoodType> selectAllType();
 
     int insert(Good good,String idUser);
+
+    List<Good> getGoodByKey(String key);
+
 }

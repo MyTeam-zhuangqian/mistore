@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="cn">
 	<head>
 		<meta charset="UTF-8">
 		<title>淘米当</title>
@@ -12,7 +12,7 @@
 			<ul class="nav">
 				<a href="index">首页 <span>|</span> </a>
 				<a href="sell"><span>发布闲置</span> <span>|</span> </a>
-				<a th:href="profile" id="personal_center" ><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span> <span>|</span> </a>
+				<a th:href="profile" id="personal_center" ><span th:text="${session.user!=null?session.user.nickname:'个人中心'}"></span> <span> |</span> </a>
 
 			</ul>
 			<div class="cart">
