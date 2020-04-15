@@ -6,7 +6,17 @@
 		<link rel="stylesheet" type="text/css" href="css/Goodsinfo.css"/>
 		<link rel="stylesheet" type="text/css" href="css/demo.css"/>
 		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 	</head>
+	<style type="text/css">
+		.container .page-right{
+			margin-top: -490px;
+
+		}
+		.page-left{
+			margin-bottom: 100px;
+		}
+	</style>
 	<body>
 		<div class="top-navbar">
 			<ul class="nav">
@@ -24,16 +34,67 @@
 		<div class="container">
 			<div class="page-left">
 				<div class="img-box">
-						<img src="img/kg5.jpg.jfif"/>
+						<img th:src="${session.good.img}" />
 					</div>
 			</div>
 			<div class="page-right">
-				<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-					<span class="price">￥12.00</span>
-					<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社</p>
-					<a href="" class="buy">立即购买</a><a href="" class="cart-add iconfont">&#xe615;添加到购物车</a>
+				<p class="descrition" th:text="${session.good.description}"></p>
+					<span class="price" th:text="'￥'+${session.good.price}+'元'"></span>
+					<p class="author" th:text="${session.good.author}"></p>
+					<a id="buy" class="buy">立即购买</a><a id="addCar" class="cart-add iconfont">&#xe615;添加到购物车</a>
 			</div>
 					
 				</div>
 	</body>
+		<script>
+			$("#addCar").click(function () {
+				var id="[[${session.good.idGood}]]";
+				$.ajax({
+					url:"/good/Cart",
+					data:{goodid:id},
+					dataType:"text",
+					type:"POST",
+					success:function (res) {
+						if (res==1){
+							alert("添加成功");
+						}
+						else {
+							alert("请先登录");
+							setInterval(function () {
+								$(location).attr('href', '/login');
+							}, 1000)
+						}
+					},
+					error:function () {
+						alert("添加失败");
+					}
+
+				});
+			});
+			$("#buy").click(function () {
+				var id="[[${session.good.idGood}]]";
+				$.ajax({
+					url:"/good/Buy",
+					data:{goodid:id,price:"[[${session.good.price}]]"},
+					dataType:"json",
+					type:"POST",
+					success:function (res) {
+						if(res==3) {
+							alert("请先登录");
+							setInterval(function () {
+								$(location).attr('href', '/login');
+							}, 1000)
+						}else if(res==2){
+							alert("余额不足")
+						}else {
+							alert("购买成功");
+						}
+					},
+					error:function () {
+						alert("服务器响应繁忙");
+					}
+
+				});
+			});
+		</script>
 </html>

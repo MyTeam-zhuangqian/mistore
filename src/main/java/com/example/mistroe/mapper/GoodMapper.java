@@ -17,4 +17,14 @@ public interface GoodMapper {
     int updateByPrimaryKey(Good record);
 
     List<Good> gatGoodByType(String ty);
+
+    Good getGoodById(String goodid);
+
+    List<Good> getCartGood(String idUser);
+
+    List<Good> GetSave(String userid);
+
+    List<Good> GetBuy(String idUser);
+
+    List<Good> GetMyBuy(String userid);
 }

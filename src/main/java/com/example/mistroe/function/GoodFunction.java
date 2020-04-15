@@ -1,7 +1,9 @@
 package com.example.mistroe.function;
 
+import com.example.mistroe.pojo.Buy;
 import com.example.mistroe.pojo.Good;
 import com.example.mistroe.pojo.GoodType;
+import com.example.mistroe.pojo.Save;
 
 import java.util.List;
 
@@ -17,4 +19,20 @@ public interface GoodFunction {
     List<GoodType> selectAllType();
 
     int insert(Good good,String idUser);
+
+    Good getGoodById(String goodid);
+
+    int SaveCar(Save save);
+
+    List<Good> getCartGood(String idUser);
+
+    int BuyGood(Buy buy);
+
+    List<Good> GetSave(String userid);
+
+    List<Good> GetBuy(String idUser);
+
+    List<Good> GetMyBuy(String userid);
+
+    int Canl(String goodid);
 }

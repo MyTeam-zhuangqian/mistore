@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="css/demo.css"/>
 		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="css/order.css"/>
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 	</head>
 	<body>
 		<div class="top-navbar">
@@ -123,32 +124,8 @@
 				</ul>
 			</div>
 			<div class="store" id="store">
-				<ul>
-					<li>
-						<div class="goods-right">
-							<img src="img/wx3.jpg.jfif"/>
-						</div>
-						<div class="goods-left">
-							<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-							<span class="price">
-								￥9999元
-							</span>
-							<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社</p>
-						</div>
-					</li>
-					<li>
-						<div class="goods-right">
-							<img src="img/wx3.jpg.jfif"/>
-						</div>
-						<div class="goods-left">
-							<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-							<span class="price">
-								￥9999元
-							</span>
-							<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社</p>
-						</div>
-					</li>
-					
+				<ul id="SC">
+
 				</ul>
 			</div>
 		</div>
@@ -209,6 +186,22 @@
 					store.style.display = 'none';
 				}
 			document.getElementById('box4').onclick = function(){
+				$.ajax({
+					url:'/good/GetSave',
+					dataType:'json',
+					type:'get',
+					success:function (data) {
+						var res=" "
+						for (var i=0;i<data.length;i++){
+							res +='<li><div class="goods-right"><img src="'+data[i].img+'"/></div> <div class="goods-left"> <p class="descrition">'+data[i].description+'</p> <span class="price">￥'+data[i].price+'元 </span> <p class="author">'+data[i].author+'</p> </div> </li>'
+						}
+						$("#SC").html(res);
+					},
+					error:function () {
+						alert("资源繁忙")
+					}
+
+				});
 					var box1 = document.getElementById('box1');
 				var box2 = document.getElementById('box2');
 				var box3 = document.getElementById('box3');

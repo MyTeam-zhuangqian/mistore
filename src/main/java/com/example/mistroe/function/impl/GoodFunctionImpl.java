@@ -1,12 +1,8 @@
 package com.example.mistroe.function.impl;
 
 import com.example.mistroe.function.GoodFunction;
-import com.example.mistroe.mapper.GoodMapper;
-import com.example.mistroe.mapper.GoodTypeMapper;
-import com.example.mistroe.mapper.SellMapper;
-import com.example.mistroe.pojo.Good;
-import com.example.mistroe.pojo.GoodType;
-import com.example.mistroe.pojo.Sell;
+import com.example.mistroe.mapper.*;
+import com.example.mistroe.pojo.*;
 import com.example.mistroe.util.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +21,10 @@ public class GoodFunctionImpl implements GoodFunction {
     GoodTypeMapper goodTypeMapper;
     @Autowired
     SellMapper sellMapper;
+    @Autowired
+    SaveMapper saveMapper;
+    @Autowired
+    BuyMapper buyMapper;
 
     @Override
     public List<Good> getAllGood() {
@@ -59,4 +59,45 @@ public class GoodFunctionImpl implements GoodFunction {
         }
 
     }
+
+    @Override
+    public Good getGoodById(String goodid) {
+        return goodMapper.getGoodById(goodid);
+    }
+
+    @Override
+    public int SaveCar(Save save) {
+        return saveMapper.SaveCar(save);
+    }
+
+    @Override
+    public List<Good> getCartGood(String idUser) {
+        return goodMapper.getCartGood(idUser);
+    }
+
+    @Override
+    public int BuyGood(Buy buy) {
+        return buyMapper.BuyGood(buy);
+    }
+
+    @Override
+    public List<Good> GetSave(String userid) {
+        return goodMapper.GetSave(userid);
+    }
+
+    @Override
+    public List<Good> GetBuy(String idUser) {
+        return goodMapper.GetBuy(idUser);
+    }
+
+    @Override
+    public List<Good> GetMyBuy(String userid) {
+        return goodMapper.GetMyBuy(userid);
+    }
+
+    @Override
+    public int Canl(String goodid) {
+        return buyMapper.Canl(goodid);
+    }
+
 }

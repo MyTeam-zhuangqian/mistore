@@ -60,12 +60,12 @@
 
 
 
-        <table tableName="sell" domainObjectName="Sell"
+        <table tableName="cart" domainObjectName="Cart"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-<table tableName="buy" domainObjectName="Buy"
+        <table tableName="save" domainObjectName="Save"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

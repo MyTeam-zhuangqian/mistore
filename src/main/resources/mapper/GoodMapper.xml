@@ -41,4 +41,24 @@
     select id_good, img, description, price, author
     from good where type =#{ty,jdbcType=VARCHAR}
   </select>
+  <select id="getGoodById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id_good, img, description, price, author,type
+    from good where id_good =#{goodid,jdbcType=VARCHAR}
+  </select>
+  <select id="getCartGood" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select good.id_good, img, description, price, author,type
+    from good,cart where cart.id_user=#{idUser,jdbcType=VARCHAR} and cart.id_good=good.id_good
+  </select>
+  <select id="GetSave" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select good.id_good, img, description, price, author,type
+    from good,save where save.id_user=#{userid,jdbcType=VARCHAR} and save.id_good=good.id_good
+  </select>
+  <select id="GetBuy" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select good.id_good, img, description, price, author,type
+    from good,buy,sell where buy.user_id=#{idUser,jdbcType=VARCHAR} and buy.good_id=sell.good_id and sell.is_sell=0 and sell.good_id=good.id_good
+   </select>
+  <select id="GetMyBuy" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select good.id_good, img, description, price, author,type
+    from good,buy,sell where buy.good_id=sell.good_id and sell.is_sell=0 and sell.user_id=#{userid,jdbcType=VARCHAR} and sell.good_id=good.id_good
+   </select>
 </mapper>

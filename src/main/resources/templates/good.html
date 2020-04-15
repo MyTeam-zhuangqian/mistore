@@ -34,18 +34,79 @@
 <div class="container">
     <ul class="goods-ul" id="Goods">
         <li class="goods-item" th:each="g:${session.goods}">
-            <a href=""><img th:src="${g.img}"/></a>
+            <a th:onclick="GoodXq([[${g.idGood}]])"><img th:src="${g.img}"/></a>
             <div class="goods-message">
                 <p class="descrition" th:text="${g.description}"></p>
                 <span class="price" th:text="${g.price}"></span>
                 <p class="author" th:text="${g.author}"></p>
-                <a class="add-cart" href="">加入购物车</a>
-                <a class="collect" href="">收藏</a>
+                <a class="add-cart" th:onclick="addCar([[${g.idGood}]])">加入购物车</a>
+                <a class="collect" th:onclick="addSave([[${g.idGood}]])">收藏</a>
             </div>
         </li>
     </ul>
 </div>
 </body>
 <script src="js/jquery-3.4.1.min.js"></script>
-<!--<script src="js/Goods.js"></script>-->
+<script>
+    function GoodXq(id) {
+        $.ajax({
+            url: "/good/getGood",
+            dataType: "json",
+            data:{goodid:id},
+            success: function () {
+                //alert("测试");
+                $(location).attr('href', '/Goodsinfo');
+            },
+            error:function () {
+                alert("加载失败");
+            }
+        });
+    }
+    function addCar(id)  {
+        $.ajax({
+            url:"/good/Cart",
+            data:{goodid:id},
+            dataType:"text",
+            type:"POST",
+            success:function (res) {
+                if (res==1){
+                    alert("添加成功");
+                }
+                else {
+                    alert("请先登录");
+                    setInterval(function () {
+                        $(location).attr('href', '/login');
+                    }, 1000)
+                }
+            },
+            error:function () {
+                alert("添加失败");
+            }
+
+        });
+    };
+    function addSave(id)  {
+        $.ajax({
+            url:"/good/Save",
+            data:{goodid:id},
+            dataType:"text",
+            type:"POST",
+            success:function (res) {
+                if (res==1){
+                    alert("添加成功");
+                }
+                else {
+                    alert("请先登录");
+                    setInterval(function () {
+                        $(location).attr('href', '/login');
+                    }, 1000)
+                }
+            },
+            error:function () {
+                alert("添加失败");
+            }
+
+        });
+    };
+</script>
 </html>

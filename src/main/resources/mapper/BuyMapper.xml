@@ -33,4 +33,14 @@
     select id_buy, is_buy, good_id, user_id
     from buy
   </select>
+  <insert id="BuyGood" parameterType="com.example.mistroe.pojo.Buy">
+    insert into buy (id_buy, is_buy, good_id,
+      user_id)
+    values (#{idBuy,jdbcType=VARCHAR}, #{isBuy,jdbcType=INTEGER}, #{goodId,jdbcType=VARCHAR},
+      #{userId,jdbcType=VARCHAR})
+  </insert>
+  <delete id="Canl" parameterType="java.lang.String">
+    delete from buy
+    where good_id = #{goodid,jdbcType=VARCHAR}
+  </delete>
 </mapper>
