@@ -27,4 +27,6 @@ public interface GoodMapper {
     List<Good> GetBuy(String idUser);
 
     List<Good> GetMyBuy(String userid);
+
+    List<Good> SellWait(String userid);
 }

@@ -33,4 +33,9 @@
     select id_sell, is_sell, good_id, user_id
     from sell
   </select>
+  <update id="IsOk" parameterType="java.lang.String">
+    update sell
+    set is_sell = 1
+    where good_id = #{goodid,jdbcType=VARCHAR}
+  </update>
 </mapper>

@@ -100,4 +100,14 @@ public class GoodFunctionImpl implements GoodFunction {
         return buyMapper.Canl(goodid);
     }
 
+    @Override
+    public int IsOk(String goodid) {
+        return sellMapper.IsOk(goodid);
+    }
+
+    @Override
+    public List<Good> SellWait(String userid) {
+        return goodMapper.SellWait(userid);
+    }
+
 }

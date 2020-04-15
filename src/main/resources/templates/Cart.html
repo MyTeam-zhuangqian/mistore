@@ -34,18 +34,18 @@
 					<p class="descrition" th:text="${g.description}">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
 					<span class="price" th:text="${'￥'+g.price+'元'}"></span>
 					<p class="author" th:text="${g.author}">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社</p>
-					<a th:onclick="Buy([[${g.idGood}]])" class="buy">立即购买</a>
+					<a th:onclick="Buy([[${g.idGood}]],[[${g.price}]])" class="buy">立即购买</a>
 				</div>
 				</li>
 			</ul>
 		</div>
 	</body>
 	<script>
-		function Buy(id){
+		function Buy(id,mon){
 
 			$.ajax({
 				url:"/good/Buy",
-				data:{goodid:id,price:"[[${session.good.price}]]"},
+				data:{goodid:id,price:mon},
 				dataType:"json",
 				type:"POST",
 				success:function (res) {

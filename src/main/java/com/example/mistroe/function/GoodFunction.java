@@ -35,4 +35,8 @@ public interface GoodFunction {
     List<Good> GetMyBuy(String userid);
 
     int Canl(String goodid);
+
+    int IsOk(String goodid);
+
+    List<Good> SellWait(String userid);
 }

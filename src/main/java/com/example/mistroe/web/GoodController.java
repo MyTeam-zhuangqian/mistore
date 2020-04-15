@@ -250,6 +250,19 @@ public class GoodController {
         int i=goodFunction.Canl(goodid);
         return i;
     }
+    @RequestMapping("/IsOk")
+    @ResponseBody
+    int IsOk(String goodid){
+        int i=goodFunction.IsOk(goodid);
+        return i;
+    }
+    @RequestMapping("/SellWait")
+    @ResponseBody
+    List<Good> SellWait(HttpServletRequest request){
+        String userid=((User)request.getSession().getAttribute("user")).getIdUser();
+        List<Good> goodList=goodFunction.SellWait(userid);
+        return  goodList;
+    }
 //    @RequestMapping("/test")
 //    @ResponseBody
 //    List<Good> test() {

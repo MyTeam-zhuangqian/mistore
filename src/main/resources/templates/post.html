@@ -52,34 +52,8 @@
 						</div>
 						<!--我买到的 已收到的-->
 							<div class="buy-box1" id="buy-box1">
-							<ul>
-								<li>
-									<div class="goods-img">
-										<img src="img/cet4.jpg.jfif"/>
-									</div>
-									<div class="goods-info">
-										<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-										<span id="" class="price">
-											￥12.00元
-										</span>
-										<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社</p>
-												<button class="reach">确认收货</button>
-									</div>
-								</li>
-								<li>
-									<div class="goods-img">
-										<img src="img/cet4.jpg.jfif"/>
-									</div>
-									<div class="goods-info">
-										<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-										<span id="" class="price">
-											￥12.00元
-										</span>
-										<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社
-立即购买</p>
-												<button class="reach">确认收货</button>
-									</div>
-								</li>
+							<ul id="MyOk">
+
 							</ul>
 						</div>
 						</div>
@@ -96,33 +70,8 @@
 						
 						<!--box1表示已收货-->
 						<div class="sell-box1" id="sell-box1">
-							<ul>
-								<li>
-									<div class="goods-img">
-										<img src="img/wx3.jpg.jfif"/>
-									</div>
-									<div class="goods-info">
-										<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-										<span id="" class="price">
-											￥12.00元
-										</span>
-										<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社
-立即购买</p>
-									</div>
-								</li>
-								<li>
-									<div class="goods-img">
-										<img src="img/wx3.jpg.jfif"/>
-									</div>
-									<div class="goods-info">
-										<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-										<span id="" class="price">
-											￥12.00元
-										</span>
-										<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社
-立即购买</p>
-									</div>
-								</li>
+							<ul id="sellw">
+
 							</ul>
 						</div>
 						
@@ -134,6 +83,20 @@
 					function canl(id) {
 						$.ajax({
 							url:'/good/Canl',
+							data:{goodid:id},
+							dataType:'json',
+							type:'POST',
+							success:function () {
+								$("#box2").click();
+							},
+							error:function () {
+								alert("取消失败，等待响应");
+							}
+						});
+					}
+					function IsOk(id) {
+						$.ajax({
+							url:'/good/IsOk',
 							data:{goodid:id},
 							dataType:'json',
 							type:'POST',
@@ -164,7 +127,7 @@
 								success:function (data) {
 									var res=" ";
 									for (var i=0;i<data.length;i++){
-										res +='<li><div class="goods-img"><img src="'+data[i].img+'"/></div><div class="goods-info"><p class="descrition">'+data[i].description+'</p><span id="" class="price">￥'+data[i].price+'元 </span> <p class="author">'+data[i].author+'</p> <button class="cancel" onclick="canl(\''+data[i].idGood+'\')">取消订单</button><button class="send">确认发货</button> </div></li>'
+										res +='<li><div class="goods-img"><img src="'+data[i].img+'"/></div><div class="goods-info"><p class="descrition">'+data[i].description+'</p><span id="" class="price">￥'+data[i].price+'元 </span> <p class="author">'+data[i].author+'</p> <button class="cancel" onclick="canl(\''+data[i].idGood+'\')">取消订单</button><button class="send" onclick="IsOk(\''+data[i].idGood+'\')">确认发货</button> </div></li>'
 									}
 									$("#selln").html(res);
 								},
@@ -192,6 +155,21 @@
 							buybox1.style.display = 'none'
 						}
 						document.getElementById('box4').onclick =function(){
+							$.ajax({
+								url:'/good/MyOk',
+								dataType:'json',
+								type:'get',
+								success:function (data) {
+									var res=' ';
+									for (var i=1;i<data.length;i++)
+									{
+
+									}
+								},
+								error:function () {
+
+								}
+							});
 							var box3 =document.getElementById('box3');
 							var box4 =document.getElementById('box4');
 							var buybox = document.getElementById('buy-box');
@@ -212,6 +190,21 @@
 							sellbox1.style.display = 'none'
 						}
 						document.getElementById('box6').onclick =function(){
+							$.ajax({
+								url:'/good/SellWait',
+								dataType:'json',
+								type:'get',
+								success:function (data) {
+									var res=' ';
+									for (var i=0;i<data.length;i++) {
+										res += '<li><div class="goods-img"><img src="'+data[i].img+'"/></div><div class="goods-info"><p class="descrition">'+data[i].description+'</p><span id="" class="price">￥'+data[i].price+'元</span><p class="author">'+data[i].author+'</p></div></li>'
+									}
+									$("#sellw").html(res);
+								},
+								error:function () {
+									alert("等待资源响应");
+								}
+							});
 							var box5 =document.getElementById('box5');
 							var box6 =document.getElementById('box6');
 							var sellbox = document.getElementById('sell-box');

@@ -13,4 +13,6 @@ public interface SellMapper {
     List<Sell> selectAll();
 
     int updateByPrimaryKey(Sell record);
+
+    int IsOk(String goodid);
 }

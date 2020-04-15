@@ -61,4 +61,8 @@
     select good.id_good, img, description, price, author,type
     from good,buy,sell where buy.good_id=sell.good_id and sell.is_sell=0 and sell.user_id=#{userid,jdbcType=VARCHAR} and sell.good_id=good.id_good
    </select>
+  <select id="SellWait" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select good.id_good, img, description, price, author,type
+    from good,sell where sell.is_sell=1 and sell.user_id=#{userid,jdbcType=VARCHAR} and sell.good_id=good.id_good
+   </select>
 </mapper>
