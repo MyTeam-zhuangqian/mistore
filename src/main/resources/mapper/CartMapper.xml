@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mistroe.mapper.CartMapper">
+  <resultMap id="BaseResultMap" type="com.example.mistroe.pojo.Cart">
+    <id column="id_car" jdbcType="VARCHAR" property="idCar" />
+    <result column="id_good" jdbcType="VARCHAR" property="idGood" />
+    <result column="id_user" jdbcType="VARCHAR" property="idUser" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cart
+    where id_car = #{idCar,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.mistroe.pojo.Cart">
+    insert into cart (id_car, id_good, id_user
+      )
+    values (#{idCar,jdbcType=VARCHAR}, #{idGood,jdbcType=VARCHAR}, #{idUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.mistroe.pojo.Cart">
+    update cart
+    set id_good = #{idGood,jdbcType=VARCHAR},
+      id_user = #{idUser,jdbcType=VARCHAR}
+    where id_car = #{idCar,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id_car, id_good, id_user
+    from cart
+    where id_car = #{idCar,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id_car, id_good, id_user
+    from cart
+  </select>
+  <insert id="addCart" parameterType="com.example.mistroe.pojo.Cart">
+    insert into cart (id_car, id_good, id_user
+      )
+    values (#{idCar,jdbcType=VARCHAR}, #{idGood,jdbcType=VARCHAR}, #{idUser,jdbcType=VARCHAR}
+      )
+  </insert>
+</mapper>
