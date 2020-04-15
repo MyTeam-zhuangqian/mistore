@@ -43,4 +43,9 @@
     delete from buy
     where good_id = #{goodid,jdbcType=VARCHAR}
   </delete>
+  <update id="Ok" parameterType="java.lang.String">
+    update buy
+    set is_buy = 1
+    where good_id = #{goodid,jdbcType=VARCHAR}
+  </update>
 </mapper>

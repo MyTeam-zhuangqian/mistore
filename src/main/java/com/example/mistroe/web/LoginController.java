@@ -106,6 +106,8 @@ public class LoginController {
     String order(HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         if (user!=null){
+            List<Good> goodList=goodFunction.Mysell(user.getIdUser());
+            request.setAttribute("goods",goodList);
             return "order";
         }else {
             return "login";

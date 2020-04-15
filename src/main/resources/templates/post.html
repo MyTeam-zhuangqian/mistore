@@ -104,7 +104,22 @@
 								$("#box2").click();
 							},
 							error:function () {
-								alert("取消失败，等待响应");
+								alert("确认失败，等待响应");
+							}
+						});
+					}
+					function Ok(id)
+					{
+						$.ajax({
+							url:'/good/Ok',
+							data:{goodid:id},
+							dataType:'json',
+							type:'POST',
+							success:function () {
+								$("#box4").click();
+							},
+							error:function () {
+								alert("确认失败，等待响应");
 							}
 						});
 					}
@@ -161,13 +176,14 @@
 								type:'get',
 								success:function (data) {
 									var res=' ';
-									for (var i=1;i<data.length;i++)
+									for (var i=0;i<data.length;i++)
 									{
-
+                                        res +='<li><div class="goods-img"><img src="'+data[i].img+'"/></div><div class="goods-info"><p class="descrition">'+data[i].description+'</p><span id="" class="price">￥'+data[i].price+'元</span><p class="author">'+data[i].author+'</p><button class="reach" onclick="Ok(\''+data[i].idGood+'\')">确认收货</button></div></li>'
 									}
+									$("#MyOk").html(res);
 								},
 								error:function () {
-
+                                    alert("等待资源响应");
 								}
 							});
 							var box3 =document.getElementById('box3');

@@ -69,6 +69,22 @@
    </select>
   <select id="SellWait" parameterType="java.lang.String" resultMap="BaseResultMap">
     select good.id_good, img, description, price, author,type
-    from good,sell where sell.is_sell=1 and sell.user_id=#{userid,jdbcType=VARCHAR} and sell.good_id=good.id_good
+    from good,sell,buy where sell.is_sell=1 and sell.user_id=#{userid,jdbcType=VARCHAR} and sell.good_id=buy.good_id and buy.is_buy=0 and buy.good_id=good.id_good
    </select>
+  <select id="MyOk" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select good.id_good, img, description, price, author,type
+    from good,buy,sell where sell.is_sell=1 and sell.good_id=buy.good_id and buy.is_buy=0 and buy.user_id=#{userid,jdbcType=VARCHAR} and buy.good_id=good.id_good
+   </select>
+  <select id="GetBuys" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select good.id_good, img, description, price, author,type
+    from good,buy where buy.is_buy=1 and buy.user_id=#{userid,jdbcType=VARCHAR} and buy.good_id=good.id_good
+   </select>
+  <select id="Mysell" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select good.id_good, img, description, price, author,type
+    from sell,good,buy where sell.user_id=#{userid,jdbcType=VARCHAR} and sell.good_id=buy.good_id and buy.is_buy=1 and buy.good_id=good.id_good
+   </select>
+  <select id="Mypub" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select good.id_good, img, description, price, author,type
+    from sell,good where sell.user_id=#{userid,jdbcType=VARCHAR} and sell.good_id=good.id_good
+</select>
 </mapper>

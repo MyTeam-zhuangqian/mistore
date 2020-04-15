@@ -19,4 +19,7 @@ public interface BuyMapper {
     int BuyGood(Buy buy);
 
     int Canl(String goodid);
+
+    int Ok(String goodid);
+
 }

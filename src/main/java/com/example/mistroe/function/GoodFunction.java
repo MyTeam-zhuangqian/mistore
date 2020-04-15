@@ -42,4 +42,14 @@ public interface GoodFunction {
     int IsOk(String goodid);
 
     List<Good> SellWait(String userid);
+
+    List<Good> MyOk(String userid);
+
+    int Ok(String goodid);
+
+    List<Good> GetBuys(String userid);
+
+    List<Good> Mysell(String userid);
+
+    List<Good> Mypub(String userid);
 }

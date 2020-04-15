@@ -116,4 +116,29 @@ public class GoodFunctionImpl implements GoodFunction {
         return goodMapper.SellWait(userid);
     }
 
+    @Override
+    public List<Good> MyOk(String userid) {
+        return goodMapper.MyOk(userid);
+    }
+
+    @Override
+    public int Ok(String goodid) {
+        return buyMapper.Ok(goodid);
+    }
+
+    @Override
+    public List<Good> GetBuys(String userid) {
+        return goodMapper.GetBuys(userid);
+    }
+
+    @Override
+    public List<Good> Mysell(String userid) {
+        return goodMapper.Mysell(userid);
+    }
+
+    @Override
+    public List<Good> Mypub(String userid) {
+        return goodMapper.Mypub(userid);
+    }
+
 }

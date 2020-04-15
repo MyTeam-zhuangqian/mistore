@@ -281,6 +281,33 @@ public class GoodController {
         List<Good> goodList=goodFunction.SellWait(userid);
         return  goodList;
     }
+    @RequestMapping("/MyOk")
+    @ResponseBody
+    List<Good> MyOk(HttpServletRequest request){
+        String userid=((User)request.getSession().getAttribute("user")).getIdUser();
+        List<Good> goodList=goodFunction.MyOk(userid);
+        return goodList;
+    }
+    @RequestMapping("/Ok")
+    @ResponseBody
+    int Ok(String goodid){
+      int i=goodFunction.Ok(goodid);
+      return i;
+    }
+    @RequestMapping("/GetBuys")
+    @ResponseBody
+    List<Good> GetBuys(HttpServletRequest request){
+        String userid=((User)request.getSession().getAttribute("user")).getIdUser();
+        List<Good> goodList=goodFunction.GetBuys(userid);
+        return goodList;
+    }
+    @RequestMapping("/Mypub")
+    @ResponseBody
+    List<Good> Mypub(HttpServletRequest request){
+        String userid=((User)request.getSession().getAttribute("user")).getIdUser();
+        List<Good> goodList=goodFunction.Mypub(userid);
+        return goodList;
+    }
 //    @RequestMapping("/test")
 //    @ResponseBody
 //    List<Good> test() {

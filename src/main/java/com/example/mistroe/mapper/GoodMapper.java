@@ -32,4 +32,12 @@ public interface GoodMapper {
     List<Good> GetMyBuy(String userid);
 
     List<Good> SellWait(String userid);
+
+    List<Good> MyOk(String userid);
+
+    List<Good> GetBuys(String userid);
+
+    List<Good> Mysell(String userid);
+
+    List<Good> Mypub(String userid);
 }

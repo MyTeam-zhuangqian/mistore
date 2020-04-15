@@ -39,8 +39,8 @@
                 <p class="descrition" th:text="${g.description}"></p>
                 <span class="price" th:text="${g.price}"></span>
                 <p class="author" th:text="${g.author}"></p>
-                <a class="add-cart" href="">加入购物车</a>
-                <a class="collect" href="">收藏</a>
+                <a class="add-cart" th:onclick="addCar([[${g.idGood}]])">加入购物车</a>
+                <a class="collect" th:onclick="addSave([[${g.idGood}]])">收藏</a>
             </div>
         </li>
     </ul>
