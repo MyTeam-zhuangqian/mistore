@@ -1,6 +1,8 @@
 package com.example.mistroe.web;
 
+import com.example.mistroe.function.GoodFunction;
 import com.example.mistroe.function.UserFunction;
+import com.example.mistroe.pojo.Good;
 import com.example.mistroe.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author zlin
@@ -21,7 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
     @Autowired
     UserFunction userFunction;
-
+    @Autowired
+    GoodFunction goodFunction;
     @RequestMapping("/login")
     String login() {
         return "login";
@@ -57,6 +61,8 @@ public class LoginController {
     String Cart(HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         if (user!=null){
+            List<Good> goodList=goodFunction.getCartGood(user.getName());
+            request.setAttribute("goods",goodList);
             return "Cart";
         }else {
             return "login";
@@ -71,7 +77,7 @@ public class LoginController {
     User loginGo(String name, String pwd, HttpServletRequest request){
         System.out.println(name+" "+pwd);
         User user = null;
-        request.getSession().setAttribute("money",300.00);
+        request.getSession().setAttribute("money",100.00);
         user = (User)request.getSession().getAttribute("user");
         if (user!=null){
             request.getSession().setAttribute("user",user);
@@ -110,6 +116,8 @@ public class LoginController {
     String post(HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         if (user!=null){
+            List<Good> goodList=goodFunction.GetBuy(user.getIdUser());
+            request.setAttribute("goods",goodList);
             return "post";
         }else {
             return "login";

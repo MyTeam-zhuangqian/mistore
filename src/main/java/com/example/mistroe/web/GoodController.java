@@ -1,10 +1,11 @@
 package com.example.mistroe.web;
 
+import com.example.mistroe.function.CartFunction;
 import com.example.mistroe.function.GoodFunction;
-import com.example.mistroe.pojo.Good;
-import com.example.mistroe.pojo.GoodType;
-import com.example.mistroe.pojo.User;
+import com.example.mistroe.mapper.CartMapper;
+import com.example.mistroe.pojo.*;
 import com.example.mistroe.util.Result;
+import com.example.mistroe.util.UUIDUtils;
 import com.example.mistroe.util.UpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,8 @@ public class GoodController {
     @Autowired
     GoodFunction goodFunction;
 
+    @Autowired
+    CartFunction cartFunction;
 
     @RequestMapping("/upload")
     @ResponseBody
@@ -178,4 +181,98 @@ public class GoodController {
 
         return result;
     }
+    @RequestMapping("/getGood")
+    @ResponseBody
+    Good getGood(String goodid,HttpServletRequest request){
+        Good good=goodFunction.getGoodById(goodid);
+        if (good!=null){
+            request.getSession().setAttribute("good",good);
+            return good;
+        }
+        else {
+            return good;
+        }
+    }
+    @RequestMapping("/Cart")
+    @ResponseBody
+    int addCar(String goodid,HttpServletRequest request){
+        if(((User)request.getSession().getAttribute("user"))==null)
+        {
+            return 3;
+        }else {
+            Cart cart = new Cart();
+            cart.setIdCar(UUIDUtils.getUUIDAsString());
+            cart.setIdGood(goodid);
+            cart.setIdUser(((User) request.getSession().getAttribute("user")).getName());
+            int i=cartFunction.addCar(cart);
+            return i;
+        }
+    }
+    @RequestMapping("/Save")
+    @ResponseBody
+    int Save(String goodid,HttpServletRequest request){
+        if(((User)request.getSession().getAttribute("user"))==null)
+        {
+            return 3;
+        }else {
+            Save save = new Save();
+            save.setIdSave(UUIDUtils.getUUIDAsString());
+            save.setIdGood(goodid);
+            save.setIdUser(((User) request.getSession().getAttribute("user")).getName());
+            int i=goodFunction.SaveCar(save);
+            return i;
+        }
+    }
+    @RequestMapping("/Buy")
+    @ResponseBody
+    int BuyGood(String goodid,String price,HttpServletRequest request){
+        //System.out.println(goodid+" "+price);
+        if(((User)request.getSession().getAttribute("user"))==null)
+        {
+            return 3;
+        }else if (Float.parseFloat(price) >(Double)request.getSession().getAttribute("money")){
+            return 2;
+        }
+        else {
+            Buy buy=new Buy();
+            buy.setGoodId(goodid);
+            buy.setIdBuy(UUIDUtils.getUUIDAsString());
+            buy.setIsBuy(0);
+            buy.setUserId(((User) request.getSession().getAttribute("user")).getIdUser());
+            int i=goodFunction.BuyGood(buy);
+            if (i==1){
+                Double mon=((Double)request.getSession().getAttribute("money"))-Float.parseFloat(price);
+                request.getSession().removeAttribute("money");
+                request.getSession().setAttribute("money",mon);
+            }
+             return i;
+        }
+    }
+    @RequestMapping("/GetSave")
+    @ResponseBody
+    List<Good> GetSave(HttpServletRequest request){
+        String userid=((User)request.getSession().getAttribute("user")).getName();
+        List<Good> goodList=goodFunction.GetSave(userid);
+        return goodList;
+    }
+    @RequestMapping("/GetMyBuy")
+    @ResponseBody
+    List<Good> GetMyBuy(HttpServletRequest request){
+        String userid=((User)request.getSession().getAttribute("user")).getIdUser();
+        List<Good> goodList=goodFunction.GetMyBuy(userid);
+        return goodList;
+    }
+    @RequestMapping("/Canl")
+    @ResponseBody
+    int Canl(String goodid){
+        int i=goodFunction.Canl(goodid);
+        return i;
+    }
+//    @RequestMapping("/test")
+//    @ResponseBody
+//    List<Good> test() {
+//        List<Good> goods = null;
+//        goods = goodFunction.getAllGood();
+//        return goods;
+//    }
 }

@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="css/Goodsinfo.css"/>
 		<link rel="stylesheet" type="text/css" href="css/demo.css"/>
 		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 	</head>
 	<body>
 		<div class="top-navbar">
@@ -22,18 +23,48 @@
 			</div>
 		</div>
 		<div class="container">
-			<div class="page-left">
-				<div class="img-box">
-						<img src="img/kg5.jpg.jfif"/>
+			<ul>
+				<li th:each="g:${goods}">
+				<div class="page-left">
+					<div class="img-box">
+						<img th:src="${g.img}"/>
 					</div>
-			</div>
-			<div class="page-right">
-				<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-					<span class="price">￥12.00</span>
-					<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社</p>
-					<a href="" class="buy">立即购买</a>
-			</div>
-					
 				</div>
+				<div class="page-right">
+					<p class="descrition" th:text="${g.description}">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
+					<span class="price" th:text="${'￥'+g.price+'元'}"></span>
+					<p class="author" th:text="${g.author}">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社</p>
+					<a th:onclick="Buy([[${g.idGood}]])" class="buy">立即购买</a>
+				</div>
+				</li>
+			</ul>
+		</div>
 	</body>
+	<script>
+		function Buy(id){
+
+			$.ajax({
+				url:"/good/Buy",
+				data:{goodid:id,price:"[[${session.good.price}]]"},
+				dataType:"json",
+				type:"POST",
+				success:function (res) {
+					if(res==3) {
+						alert("请先登录");
+						setInterval(function () {
+							$(location).attr('href', '/login');
+						}, 1000)
+					}else if(res==2){
+						alert("余额不足")
+					}else {
+						alert("购买成功");
+					}
+				},
+				error:function () {
+					alert("服务器响应繁忙");
+				}
+
+			});
+		};
+	</script>
 </html>

@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="css/demo.css"/>
 		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="css/post.css"/>
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 	</head>
 	<body>
 		<div class="top-navbar">
@@ -36,30 +37,15 @@
 						</ul>
 						<div class="buy-box" id="buy-box">
 							<ul>
-								<li>
+								<li th:each="g:${goods}">
 									<div class="goods-img">
-										<img src="img/kg3.jfif"/>
+										<img th:src="${g.img}"/>
 									</div>
 									<div class="goods-info">
-										<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-										<span id="" class="price">
-											￥12.00元
+										<p class="descrition" th:text="${g.description}"></p>
+										<span class="price" th:text="'￥'+${g.price}+'元'">
 										</span>
-										<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社
-立即购买</p>
-									</div>
-								</li>
-								<li>
-									<div class="goods-img">
-										<img src="img/kg3.jfif"/>
-									</div>
-									<div class="goods-info">
-										<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-										<span id="" class="price">
-											￥12.00元
-										</span>
-										<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社
-立即购买</p>
+										<p class="author" th:text="${g.author}"></p>
 									</div>
 								</li>
 							</ul>
@@ -76,8 +62,8 @@
 										<span id="" class="price">
 											￥12.00元
 										</span>
-										<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社
-立即购买</p>
+										<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社</p>
+												<button class="reach">确认收货</button>
 									</div>
 								</li>
 								<li>
@@ -91,6 +77,7 @@
 										</span>
 										<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社
 立即购买</p>
+												<button class="reach">确认收货</button>
 									</div>
 								</li>
 							</ul>
@@ -102,33 +89,8 @@
 							<li id="box6">待收货</li>
 						</ul>
 						<div class="sell-box" id="sell-box">
-							<ul>
-								<li>
-									<div class="goods-img">
-										<img src="img/kg4.jfif"/>
-									</div>
-									<div class="goods-info">
-										<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-										<span id="" class="price">
-											￥12.00元
-										</span>
-										<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社
-立即购买</p>
-									</div>
-								</li>
-								<li>
-									<div class="goods-img">
-										<img src="img/kg4.jfif"/>
-									</div>
-									<div class="goods-info">
-										<p class="descrition">中国古典文学四大名著（新课标） 中小学新课标必读，四大名著，经典原著权威改编，无障碍轻松阅读，影响学生</p>
-										<span id="" class="price">
-											￥12.00元
-										</span>
-										<p class="author">（明) 罗贯中,(明)施耐庵, (明) 罗贯中（清）曹雪芹 著;富强 改编 /2016-07-20 /安徽教育出版社
-立即购买</p>
-									</div>
-								</li>
+							<ul id="selln">
+
 							</ul>
 						</div>
 						
@@ -169,6 +131,20 @@
 					</div>
 				</div>
 				<script type="text/javascript">
+					function canl(id) {
+						$.ajax({
+							url:'/good/Canl',
+							data:{goodid:id},
+							dataType:'json',
+							type:'POST',
+							success:function () {
+								$("#box2").click();
+							},
+							error:function () {
+								alert("取消失败，等待响应");
+							}
+						});
+					}
 					onload =function(){
 						document.getElementById('box1').onclick =function(){
 							var box1 =document.getElementById('box1');
@@ -181,6 +157,21 @@
 							sell.style.display = 'none'
 						}
 						document.getElementById('box2').onclick =function(){
+							$.ajax({
+								url:'good/GetMyBuy',
+								dataType:'json',
+								type:'get',
+								success:function (data) {
+									var res=" ";
+									for (var i=0;i<data.length;i++){
+										res +='<li><div class="goods-img"><img src="'+data[i].img+'"/></div><div class="goods-info"><p class="descrition">'+data[i].description+'</p><span id="" class="price">￥'+data[i].price+'元 </span> <p class="author">'+data[i].author+'</p> <button class="cancel" onclick="canl(\''+data[i].idGood+'\')">取消订单</button><button class="send">确认发货</button> </div></li>'
+									}
+									$("#selln").html(res);
+								},
+								error:function () {
+									alert("服务器资源繁忙");
+								}
+							});
 							var box1 =document.getElementById('box1');
 							var box2 =document.getElementById('box2');
 							var buy = document.getElementById('buy');

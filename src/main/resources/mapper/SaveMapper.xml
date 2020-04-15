@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mistroe.mapper.SaveMapper">
+  <resultMap id="BaseResultMap" type="com.example.mistroe.pojo.Save">
+    <id column="id_save" jdbcType="VARCHAR" property="idSave" />
+    <result column="id_user" jdbcType="VARCHAR" property="idUser" />
+    <result column="id_good" jdbcType="VARCHAR" property="idGood" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from save
+    where id_save = #{idSave,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.mistroe.pojo.Save">
+    insert into save (id_save, id_user, id_good
+      )
+    values (#{idSave,jdbcType=VARCHAR}, #{idUser,jdbcType=VARCHAR}, #{idGood,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.mistroe.pojo.Save">
+    update save
+    set id_user = #{idUser,jdbcType=VARCHAR},
+      id_good = #{idGood,jdbcType=VARCHAR}
+    where id_save = #{idSave,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id_save, id_user, id_good
+    from save
+    where id_save = #{idSave,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id_save, id_user, id_good
+    from save
+  </select>
+  <insert id="SaveCar" parameterType="com.example.mistroe.pojo.Save">
+    insert into save (id_save, id_user, id_good
+      )
+    values (#{idSave,jdbcType=VARCHAR}, #{idUser,jdbcType=VARCHAR}, #{idGood,jdbcType=VARCHAR}
+      )
+  </insert>
+</mapper>

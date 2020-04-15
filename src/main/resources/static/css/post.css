@@ -356,3 +356,34 @@ nav a span{
 .container .nav-right .sell .sell-box1 ul li:hover{
 	background: rgb(248,248,248);
 }
+.reach{
+	height: 30px;
+	line-height: 30px;
+	width: 80px;
+	border: 2px solid red;
+	color: red;
+	background: #fff;
+	cursor: pointer;
+	margin-left: 340px;
+	
+}
+.cancel{
+	height: 30px;
+	line-height: 30px;
+	width: 80px;
+	border: 2px solid red;
+	color: red;
+	background: #fff;
+	cursor: pointer;
+	margin-left: 340px;
+}
+.send{
+	height: 30px;
+	line-height: 30px;
+	width: 80px;
+	border: 2px solid red;
+	color: red;
+	background: #fff;
+	cursor: pointer;
+	margin-left: 20px;
+}

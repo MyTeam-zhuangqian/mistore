@@ -277,128 +277,128 @@
                         }
                     });
 
+                        }
+                    });
+                    var pro = document.getElementById('pro');
+                    var address = document.getElementById('address');
+                    var cash = document.getElementById('cash');
+                    var pwd = document.getElementById('pwd-change');
+                    pro.style.display='none';
+                    address.style.display='block';
+                    cash.style.display='none';
+                    pwd.style.display='none';
                 }
-            });
-            var pro = document.getElementById('pro');
-            var address = document.getElementById('address');
-            var cash = document.getElementById('cash');
-            var pwd = document.getElementById('pwd-change');
-            pro.style.display = 'none';
-            address.style.display = 'block';
-            cash.style.display = 'none';
-            pwd.style.display = 'none';
-        }
-        $("#Tj").click(function () {
-            $.ajax({
-                url: '/Addr/Insert',
-                dataType: 'text',
-                data: $("#form2").serialize(),
-                type: 'POST',
-                success: function (i) {
-                    if (i == 1) {
-                        $("#box2").click();
-                        layer.msg("添加成功");
-                    } else {
-                        layer.msg("添加失败，请重试！");
-                    }
-                },
-                error: function () {
-                    layer.msg("添加失败，请重试！");
-                }
-            })
-        });
-        $("#pwd").click(function () {
-            $.ajax({
-                url: '/Addr/ChangePwd',
-                dataType: 'text',
-                data: $("#form3").serialize(),
-                type: 'POST',
-                success: function (i) {
-                    if (i == 1) {
-                        layer.msg("修改成功，请重新登录！");
-                        setInterval(function () {
-                            $(location).attr('href', '/login');
-                        }, 1000);
-                    } else {
-                        layer.msg("修改失败，请重试！");
-                    }
-                },
-                error: function () {
-                    layer.msg("修改失败，请重试！");
-                }
-            });
-        });
-        $("#CZ").click(function () {
-            $.ajax({
-                url: '',
-                datatype: 'text',
-                data: $("#form4").serialize(),
-                success: function () {
-                    alert("充值成功！");
-                },
-                error: function () {
-                    alert("充值失败！");
-                }
-            });
-        });
-    });
+                $("#Tj").click(function () {
+                   $.ajax({
+                       url:'/Addr/Insert',
+                       dataType:'text',
+                       data:$("#form2").serialize(),
+                       type:'POST',
+                       success:function (i) {
+                           if(i==1){
+                               $("#box2").click();
+                               layer.msg("添加成功");
+                           }else {
+                               layer.msg("添加失败，请重试！");
+                           }
+                       },
+                       error:function () {
+                           layer.msg("添加失败，请重试！");
+                       }
+                   })
+                });
+                $("#pwd").click(function () {
+                    $.ajax({
+                        url:'/Addr/ChangePwd',
+                        dataType:'text',
+                        data:$("#form3").serialize(),
+                        type:'POST',
+                        success:function (i) {
+                            if (i==1){
+                                layer.msg("修改成功，请重新登录！");
+                                setInterval(function () {
+                                    $(location).attr('href', '/login');
+                                }, 1000);
+                            }else {
+                                layer.msg("修改失败，请重试！");
+                            }
+                        },
+                        error:function () {
+                            layer.msg("修改失败，请重试！");
+                        }
+                    });
+                 });
+                $("#CZ").click(function () {
+                   $.ajax({
+                       url:'',
+                       datatype:'text',
+                       data:$("#form4").serialize(),
+                       success:function () {
+                           alert("充值成功！");
+                       },
+                       error:function () {
+                           alert("充值失败！");
+                       }
+                   }) ;
+                });
+             });
 
-    function Read(obj) {
-        var file = obj.files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function (e) {
+	    function Read(obj) {
+        	var file = obj.files[0];
+        	var reader = new FileReader();
+       	 	reader.readAsDataURL(file);
+        	reader.onload = function (e) {
             var img = document.getElementById("selectImg");
-            img.src = e.target.result;
+            img.src = e.target.result;   
 
-
+            
         };
     }
+	  onload =function(){
+		  var sex=document.getElementById("zql").value;
+		  var inp=document.getElementById("sex");
+		  var inp2=document.getElementById("sex1");
+		  if(sex==1)
+		  {
+			  inp.setAttribute("checked"," ");
+			  inp2.removeAttribute("checked");
+		  }else {
+			  inp2.setAttribute("checked"," ");
+			  inp.removeAttribute("checked");
+		  }
+	  	document.getElementById('box1').onclick = function(){
+	  		var pro = document.getElementById('pro');
+	  		var address = document.getElementById('address');
+	  		var cash = document.getElementById('cash');
+	  		var pwd = document.getElementById('pwd-change');
+	  		pro.style.display='block';
+	  		address.style.display='none';
+	  		cash.style.display='none';
+	  		pwd.style.display='none';
 
-    onload = function () {
-        var sex = document.getElementById("zql").value;
-        var inp = document.getElementById("sex");
-        var inp2 = document.getElementById("sex1");
-        if (sex == 1) {
-            inp.setAttribute("checked", " ");
-            inp2.removeAttribute("checked");
-        } else {
-            inp2.setAttribute("checked", " ");
-            inp.removeAttribute("checked");
-        }
-        document.getElementById('box1').onclick = function () {
-            var pro = document.getElementById('pro');
-            var address = document.getElementById('address');
-            var cash = document.getElementById('cash');
-            var pwd = document.getElementById('pwd-change');
-            pro.style.display = 'block';
-            address.style.display = 'none';
-            cash.style.display = 'none';
-            pwd.style.display = 'none';
+	  	}
+	  	document.getElementById('box3').onclick = function(){
+	  		var pro = document.getElementById('pro');
+	  		var address = document.getElementById('address');
+	  		var cash = document.getElementById('cash');
+	  		var pwd = document.getElementById('pwd-change');
+	  		pro.style.display='none';
+	  		address.style.display='none';
+	  		cash.style.display='block';
+	  		pwd.style.display='none';
+	  	}
+	  	document.getElementById('box4').onclick = function(){
+	  		var pro = document.getElementById('pro');
+	  		var address = document.getElementById('address');
+	  		var cash = document.getElementById('cash');
+	  		var pwd = document.getElementById('pwd-change');
+	  		pro.style.display='none';
+	  		address.style.display='none';
+	  		cash.style.display='none';
+	  		pwd.style.display='block';
+	  	}
+	  }
 
-        }
-        document.getElementById('box3').onclick = function () {
-            var pro = document.getElementById('pro');
-            var address = document.getElementById('address');
-            var cash = document.getElementById('cash');
-            var pwd = document.getElementById('pwd-change');
-            pro.style.display = 'none';
-            address.style.display = 'none';
-            cash.style.display = 'block';
-            pwd.style.display = 'none';
-        }
-        document.getElementById('box4').onclick = function () {
-            var pro = document.getElementById('pro');
-            var address = document.getElementById('address');
-            var cash = document.getElementById('cash');
-            var pwd = document.getElementById('pwd-change');
-            pro.style.display = 'none';
-            address.style.display = 'none';
-            cash.style.display = 'none';
-            pwd.style.display = 'block';
-        }
-    }
-
-</script>
-</body>
+			</script>
+	</body>
 </html>

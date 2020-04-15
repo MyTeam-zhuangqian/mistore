@@ -84,7 +84,7 @@ nav a span{
 }
 .container{
 	width: 80%;
-	height: 600px;
+	height: auto;
 	border: 1px solid gainsboro;
 	margin: 100px auto;
 	text-align: center;
@@ -110,8 +110,8 @@ nav a span{
 	
 	float: right;
 	position: absolute;
-	top: 0;
-	right: 10PX;
+	margin-left: 320px;
+	margin-top: -650px;
 	
 }
 .container .page-right .descrition{
@@ -167,4 +167,15 @@ nav a span{
 	border: 0.5px solid rgb(255,228,208);
 	left:180px;
 	border-radius: 5px;
+}
+.container ul li{
+	list-style: none;
+	height: ;
+	height: 500px;
+	width: 100%;
+	
+	margin-top: -100px;
+	
+	
+	
 }

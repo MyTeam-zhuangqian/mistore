@@ -75,7 +75,8 @@ public class AddrController {
     @RequestMapping("/CZ")
     @ResponseBody
     int CZ(Float mon,HttpServletRequest request){
-        Float money= (Float) request.getSession().getAttribute("money");
+        Double money= (Double) request.getSession().getAttribute("money");
+        request.getSession().removeAttribute("money");
         request.getSession().setAttribute("money",money+mon);
         return 1;
     }

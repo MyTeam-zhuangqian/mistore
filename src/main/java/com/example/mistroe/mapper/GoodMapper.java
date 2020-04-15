@@ -20,4 +20,14 @@ public interface GoodMapper {
     List<Good> gatGoodByType(String ty);
 
     List<Good> selectGoodByKey(@Param("key")String key);
+
+    Good getGoodById(String goodid);
+
+    List<Good> getCartGood(String idUser);
+
+    List<Good> GetSave(String userid);
+
+    List<Good> GetBuy(String idUser);
+
+    List<Good> GetMyBuy(String userid);
 }
