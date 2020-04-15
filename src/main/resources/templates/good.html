@@ -16,7 +16,8 @@
 
     </ul>
     <div class="cart">
-        <a href="Cart" id="cart"><span class="iconfont">&#xe615;</span> 购物车（0）</a>
+        <a href="Cart" id="cart"><span class="iconfont">&#xe615;</span>
+            <span th:text="${session.cartCount!=null?'购物车('+session.cartCount+')':'购物车(0)'}"></span></a>
         <a href="order"> | 订单管理 </a>
 
     </div>

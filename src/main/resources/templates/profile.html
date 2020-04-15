@@ -36,7 +36,8 @@
 
     </ul>
     <div class="cart">
-        <a href="Cart" id="cart"><span class="iconfont">&#xe615;</span> 购物车（0）</a>
+        <a href="Cart" id="cart"><span class="iconfont">&#xe615;</span>
+            <span th:text="${session.cartCount!=null?'购物车('+session.cartCount+')':'购物车(0)'}"></span></a>
         <a href="order"> | 订单管理 </a>
         <a href="post"> | 物流管理 </a>
 
@@ -355,17 +356,17 @@
         };
     }
 	  onload =function(){
-		  // var sex=document.getElementById("zql").value;
-		  // var inp=document.getElementById("sex");
-		  // var inp2=document.getElementById("sex1");
-		  // if(sex==1)
-		  // {
-			//   inp.setAttribute("checked"," ");
-			//   inp2.removeAttribute("checked");
-		  // }else {
-			//   inp2.setAttribute("checked"," ");
-			//   inp.removeAttribute("checked");
-		  // }
+		  /*var sex=document.getElementById("zql").value;
+		  var inp=document.getElementById("sex");
+		  var inp2=document.getElementById("sex1");
+		  if(sex==1)
+		  {
+			  inp.setAttribute("checked"," ");
+			  inp2.removeAttribute("checked");
+		  }else {
+			  inp2.setAttribute("checked"," ");
+			  inp.removeAttribute("checked");
+		  }*/
 	  	document.getElementById('box1').onclick = function(){
 	  		var pro = document.getElementById('pro');
 	  		var address = document.getElementById('address');

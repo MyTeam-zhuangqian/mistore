@@ -1,5 +1,6 @@
 package com.example.mistroe.web;
 
+import com.example.mistroe.function.CartFunction;
 import com.example.mistroe.function.GoodFunction;
 import com.example.mistroe.function.UserFunction;
 import com.example.mistroe.pojo.Good;
@@ -26,6 +27,9 @@ public class LoginController {
     UserFunction userFunction;
     @Autowired
     GoodFunction goodFunction;
+    @Autowired
+    CartFunction cartFunction;
+
     @RequestMapping("/login")
     String login() {
         return "login";
@@ -81,6 +85,8 @@ public class LoginController {
         user = (User)request.getSession().getAttribute("user");
         if (user!=null){
             request.getSession().setAttribute("user",user);
+            int cartCount = cartFunction.selectCountByUser(user.getName());
+            request.getSession().setAttribute("cartCount",cartCount);
             return user;
         }
         //执行登陆方法
@@ -88,6 +94,8 @@ public class LoginController {
             //登陆成功
             user = userFunction.loginGO(name, pwd);
             request.getSession().setAttribute("user",user);
+            int cartCount = cartFunction.selectCountByUser(user.getName());
+            request.getSession().setAttribute("cartCount",cartCount);
             return user;
         }
     }

@@ -16,4 +16,9 @@ public class CartFunctionImpl implements CartFunction {
     public int addCar(Cart cart) {
         return cartMapper.addCart(cart);
     }
+
+    @Override
+    public int selectCountByUser(String name) {
+        return cartMapper.selectCountByUserName(name);
+    }
 }

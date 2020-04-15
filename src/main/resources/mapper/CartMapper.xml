@@ -31,6 +31,9 @@
     select id_car, id_good, id_user
     from cart
   </select>
+  <select id="selectCountByUserName" resultType="integer">
+    select count(id_user) from cart where id_user = #{name}
+  </select>
   <insert id="addCart" parameterType="com.example.mistroe.pojo.Cart">
     insert into cart (id_car, id_good, id_user
       )

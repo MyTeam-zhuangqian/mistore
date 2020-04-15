@@ -1,6 +1,8 @@
 package com.example.mistroe.mapper;
 
 import com.example.mistroe.pojo.Cart;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface CartMapper {
@@ -15,4 +17,6 @@ public interface CartMapper {
     int updateByPrimaryKey(Cart record);
 
     int addCart(Cart cart);
+
+    int selectCountByUserName(@Param("name") String name);
 }
