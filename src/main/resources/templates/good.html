@@ -28,7 +28,7 @@
     <input class="search-btn" id="search-button" type="button" name="" value="搜索"/>
 </div>
 <div class="page-nav">
-    <a href="Cart" class="iconfont" id="cart">&#xe615;购物车<span>0</span></a>
+    <a href="Cart" class="iconfont" id="cart">&#xe615;购物车<span th:text="${session.cartCount!=null?'('+session.cartCount+')':'(0)'}"></span></a>
     <a href="order" class="order">订单管理</a>
 </div>
 <i class="divide"></i>
