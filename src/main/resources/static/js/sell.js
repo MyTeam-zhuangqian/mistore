@@ -6,7 +6,7 @@ layui.use(['layer', 'upload'], function () {
     //普通图片上传
     var uploadInst = upload.render({
         elem: '#upload_img'
-        , url: 'http://localhost:8080/good/upload' //改成您自己的上传接口
+        , url: '/good/upload' //改成您自己的上传接口
         , before: function (obj) {
             //预读本地文件示例，不支持ie8
             obj.preview(function (index, file, result) {
@@ -36,7 +36,7 @@ layui.use(['layer', 'upload'], function () {
     //提交表格
     $("#submit").click(function () {
         $.ajax({
-            url: 'http://localhost:8080/good/insert',
+            url: '/good/insert',
             type: 'POST',
             dataType: 'json',
             data: $('#insert_good_form').serialize(),
@@ -55,7 +55,7 @@ layui.use(['layer', 'upload'], function () {
 
     //获取所有图书type
     $.ajax({
-        url: 'http://localhost:8080/good/selectAllType',
+        url: '/good/selectAllType',
         type: 'POST',
         dataType: 'json',
         data: '',

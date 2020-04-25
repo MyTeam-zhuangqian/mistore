@@ -29,7 +29,7 @@
         layui.use(["layer"], function () {
             var layer = layui.layer;
             $.ajax({
-                url: 'http://localhost:8080/login_go',
+                url: '/login_go',
                 type: 'POST',
                 dataType: 'json',
                 data: $("#form").serialize(),

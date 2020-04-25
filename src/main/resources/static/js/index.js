@@ -1,12 +1,12 @@
 $("#search-button").click(function () {
     $.ajax({
-        url: 'http://localhost:8080/good/search',
+        url: '/good/search',
         type: 'POST',
         dataType: 'json',
         data: {key:$("#search").val()},
         success: function (res) {
             if (res.status==0){
-                $(location).attr('href','http://localhost:8080/good')
+                $(location).attr('href','/good')
             }else {
                 layer.msg(res.message)
             }

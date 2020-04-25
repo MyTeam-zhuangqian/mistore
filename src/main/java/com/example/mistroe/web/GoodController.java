@@ -205,6 +205,9 @@ public class GoodController {
             cart.setIdGood(goodid);
             cart.setIdUser(((User) request.getSession().getAttribute("user")).getName());
             int i=cartFunction.addCar(cart);
+            request.getSession().removeAttribute("cartCount");
+            int cartCount = cartFunction.selectCountByUser(((User) request.getSession().getAttribute("user")).getName());
+            request.getSession().setAttribute("cartCount",cartCount);
             return i;
         }
     }

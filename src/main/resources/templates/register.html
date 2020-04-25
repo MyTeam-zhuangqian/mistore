@@ -46,7 +46,7 @@
         //普通图片上传
         var  uploadInst = upload.render({
             elem: '#upload_img'
-            , url: 'http://localhost:8080/good/upload' //改成您自己的上传接口
+            , url: '/good/upload' //改成您自己的上传接口
             , before: function (obj) {
                 //预读本地文件示例，不支持ie8
                 obj.preview(function (index, file, result) {
@@ -76,7 +76,7 @@
         $("#form").submit(function (e) {
             e.preventDefault();
             $.ajax({
-                url: 'http://localhost:8080/user/insert',
+                url: '/user/insert',
                 type: 'POST',
                 dataType: 'json',
                 data: $('#form').serialize(),
@@ -84,7 +84,7 @@
                     if (res.status==0){
                         layer.msg('注册成功');
                         setTimeout(function () {
-                            $(location).attr('href','http://localhost:8080/login')
+                            $(location).attr('href','/login')
                         })
                     }else {
                         layer.msg(res.message)

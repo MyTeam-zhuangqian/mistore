@@ -124,7 +124,7 @@
 <script type="text/javascript">
     $("#user_update").click(function () {
         $.ajax({
-            url: 'http://localhost:8080/user/update',
+            url: '/user/update',
             type: 'POST',
             dataType: 'json',
             data: $("#form_in").serialize(),
@@ -149,7 +149,7 @@
         //普通图片上传
         var uploadInst = upload.render({
             elem: '#upload_img'
-            , url: 'http://localhost:8080/good/upload' //改成您自己的上传接口
+            , url: '/good/upload' //改成您自己的上传接口
             , before: function (obj) {
                 //预读本地文件示例，不支持ie8
                 obj.preview(function (index, file, result) {
@@ -161,7 +161,7 @@
                     //上传成功
                     $("#sc").val(res.message);
 					$.ajax({
-						url: 'http://localhost:8080/user/updateHeadPortrait',
+						url: '/user/updateHeadPortrait',
 						type: 'POST',
 						dataType: 'json',
 						data: {img: $("#sc").val()},

@@ -83,7 +83,7 @@ public class LoginController {
         User user = null;
         request.getSession().setAttribute("money",100.00);
         user = (User)request.getSession().getAttribute("user");
-        if (user!=null){
+        if (name.equals(user.getName())&&user!=null){
             request.getSession().setAttribute("user",user);
             int cartCount = cartFunction.selectCountByUser(user.getName());
             request.getSession().setAttribute("cartCount",cartCount);
