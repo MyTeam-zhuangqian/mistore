@@ -122,11 +122,13 @@ public class LoginController {
         User userx = (User)request.getSession().getAttribute("user");//获取session缓存user
         if (userx!=null&&user==null){
             if(name.equals(userx.getName())){
+                //如果是已登录用户，则可以免密码登陆
                 request.getSession().setAttribute("user", userx);
                 int cartCount = cartFunction.selectCountByUser(userx.getName());//加载购物车商品数量用selectCountByUser实现
                 request.getSession().setAttribute("cartCount", cartCount);
                 return userx;
             }else{
+                //非已登录用户，重新执行登陆方法
                 user = userFunction.loginGO(name, pwd);//查询当前登录用户是否存在，loginGO方法实现,同下
                 request.getSession().setAttribute("user",user);
                 int cartCount = cartFunction.selectCountByUser(user.getName());
