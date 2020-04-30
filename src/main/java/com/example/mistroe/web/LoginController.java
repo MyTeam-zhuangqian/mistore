@@ -119,13 +119,13 @@ public class LoginController {
         System.out.println(name+" "+pwd);
         User user = null;
         request.getSession().setAttribute("money",100.00);
-        user = (User)request.getSession().getAttribute("user");
-        if (user!=null){
-            if(name.equals(user.getName())){
-                request.getSession().setAttribute("user", user);
-                int cartCount = cartFunction.selectCountByUser(user.getName());//加载购物车商品数量用selectCountByUser实现
+        User userx = (User)request.getSession().getAttribute("user");//获取session缓存user
+        if (userx!=null&&user==null){
+            if(name.equals(userx.getName())){
+                request.getSession().setAttribute("user", userx);
+                int cartCount = cartFunction.selectCountByUser(userx.getName());//加载购物车商品数量用selectCountByUser实现
                 request.getSession().setAttribute("cartCount", cartCount);
-                return user;
+                return userx;
             }else{
                 user = userFunction.loginGO(name, pwd);//查询当前登录用户是否存在，loginGO方法实现,同下
                 request.getSession().setAttribute("user",user);

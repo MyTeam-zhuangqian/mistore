@@ -12,39 +12,76 @@
         <span>用户注册</span>
     </div>
     <div class="body">
-        <form method="post" id="form">
-			<div class="layui-upload">
+        <form method="post" id="form" class="layui-form">
+            <div class="layui-upload">
                 <div class="layui-upload-list">
                     <img class="layui-upload-img" id="selectImg">
                 </div>
-				<button type="button" class="head-btn" id="upload_img">上传图片</button>
+                <button type="button" class="head-btn" id="upload_img">上传图片</button>
                 <p id="demoText"></p>
-			</div>
-            <a hidden="hidden"><input type="text" name="headPortrait" lay-verify="title" autocomplete="off" placeholder=""
+            </div>
+            <a hidden="hidden"><input type="text" name="headPortrait" lay-verify="title" autocomplete="off"
+                                      placeholder=""
                                       class="layui-input" id="sc"></a>
 
-            昵称： <input class="email" type="text" name="nickname"  value=""/><br>
-            用户名：<input class="user" type="text" name="name"  value="" property="手机号码"/><br>
-            邮箱：<input class="email" type="email" name="email"><br>
-            密码：<input class="pwd" type="password" name="pwd"><br>
+            昵称： <input class="email" type="text" name="nickname" value=""/><br>
+            用户名：<input id="name" class="user" type="tel" name="name" value="" placeholder="请输入手机号"
+                       lay-verify="required|phone" autocomplete="off"/><br>
+            邮箱：<input class="email" type="email" name="email" lay-verify="email" autocomplete="off"><br>
+            密码：<input class="pwd" type="password" name="pwd" lay-verify="pass" placeholder="请输入6-12位密码"
+                      autocomplete="off"><br>
             性别：<input class="sex" type="radio" name="sex" id="sex" value="1" checked="checked"/>
             <label for="sex">
-                男<input class="sex1" type="radio" name="sex" id="sex" value="0"/> 女<br>
+                男<input class="sex1" type="radio" name="sex" value="0"/> 女<br>
             </label>
-            <input class="sub" type="submit" value="提交" id="submit"/>
+            <input class="sub" type="submit" value="提交" id="submit" lay-submit="" lay-filter="demo1"/>
         </form>
     </div>
 </div>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="layui/layui.js"></script>
 <script type="text/javascript">
-    layui.use(['layer', 'upload'], function () {
-        var layer = layui.layer //弹层
+    layui.use(['layer', 'upload', 'form'], function () {
+        var form = layui.form,
+            layer = layui.layer //弹层
             ,
             upload = layui.upload;//上传图片
 
+        form.on('submit(demo1)', function (data) {
+            /*layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            });*/
+            $.ajax({
+                url: '/user/insert',
+                type: 'POST',
+                dataType: 'json',
+                data: $('#form').serialize(),
+                success: function (res) {
+                    if (res.status == 0) {
+                        layer.msg('注册成功');
+                        setTimeout(function () {
+                            $(location).attr('href', '/login')
+                        })
+                    } else {
+                        layer.msg(res.message)
+                    }
+                },
+                error: function () {
+                    layer.msg('网络繁忙请稍后重试');
+                }
+            })
+            return false;
+        });
+        //自定义验证规则
+        form.verify({
+            pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+            ]
+        });
+
         //普通图片上传
-        var  uploadInst = upload.render({
+        var uploadInst = upload.render({
             elem: '#upload_img'
             , url: '/good/upload' //改成您自己的上传接口
             , before: function (obj) {
@@ -73,28 +110,7 @@
                 });
             }
         });
-        $("#form").submit(function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: '/user/insert',
-                type: 'POST',
-                dataType: 'json',
-                data: $('#form').serialize(),
-                success: function (res) {
-                    if (res.status==0){
-                        layer.msg('注册成功');
-                        setTimeout(function () {
-                            $(location).attr('href','/login')
-                        })
-                    }else {
-                        layer.msg(res.message)
-                    }
-                },
-                error:function () {
-                    layer.msg('网络繁忙请稍后重试');
-                }
-            })
-        })
+
     });
 </script>
 </body>
